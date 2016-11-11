@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class IOStream1 {
-	public void ReadFile(String fileName)
+	public void readFile(String fileName)
 	{
 		try{
 		InputStream is = new FileInputStream(new File (fileName));
