@@ -11,10 +11,10 @@ public class IOStream1 {
 		InputStream is = new FileInputStream(new File (fileName));
 		DataInputStream ds = new DataInputStream(is);
 		
-		//while(ds.available() > 0){
+		while(ds.available() > 0){
 			int a  = ds.readInt();
 			System.out.println(a);
-		//}
+		}
 		
 		// close the stream
 		ds.close();
