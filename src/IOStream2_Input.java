@@ -10,9 +10,14 @@ public class IOStream2_Input implements I_InputStream {
 	private InputStream is;
 	private BufferedInputStream bis;
 	private DataInputStream ds;
+	private String filename;
+	
+	public IOStream2_Input(String filename) {
+		this.filename = filename;
+	}
 	
 	@Override
-	public void open(String filename) throws IOException {
+	public void open() throws IOException {
 		is = new FileInputStream( new File(filename) );
 		bis = new BufferedInputStream( is );
 		ds = new DataInputStream( bis );
@@ -29,6 +34,21 @@ public class IOStream2_Input implements I_InputStream {
 	@Override
 	public int read_next() throws IOException {
 		return ds.readInt();
+	}
+
+	@Override
+	public void close() throws IOException {
+		try {
+			if(is!=null) is.close();
+		} catch (IOException e) {
+			
+		}
+		
+		try {
+			if(ds!=null) ds.close();
+		} catch (IOException e) {
+			
+		}		
 	}
 
 }
