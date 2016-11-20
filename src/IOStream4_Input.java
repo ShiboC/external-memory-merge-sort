@@ -40,7 +40,7 @@ public class IOStream4_Input implements I_InputStream {
 
 	@Override
 	public boolean end_of_stream() throws IOException {
-		
+
 		if (position < fileChannel.size() || mappedByteBuffer.hasRemaining()) {
 
 			return false;
@@ -59,7 +59,7 @@ public class IOStream4_Input implements I_InputStream {
 	}
 
 	public static void main(String[] args) throws IOException {
-		IOStream4_Output ioStream4Write = new IOStream4_Output("test.data", 5,3);
+		IOStream4_Output ioStream4Write = new IOStream4_Output("test.data", 5, 3);
 		ioStream4Write.create();
 		for (int i = 0; i < 3; i++) {
 			ioStream4Write.write(i);
@@ -68,8 +68,8 @@ public class IOStream4_Input implements I_InputStream {
 		ioStream4Write.close();
 		IOStream4_Input ioStream4Read = new IOStream4_Input("test.data", 5);
 		ioStream4Read.open();
-	//	System.out.println(ioStream4Read.read_next()+"  &&&");
-		ioStream4Read.real_all();
+		// System.out.println(ioStream4Read.read_next()+" &&&");
+		System.out.println(ioStream4Read.read_all());
 	}
 
 	@Override
@@ -78,23 +78,13 @@ public class IOStream4_Input implements I_InputStream {
 	}
 
 	@Override
-	public void real_all() throws IOException {
-		while(!this.end_of_stream())
-		{
-			System.out.println(this.read_next());
-		}
-	}
-
-	@Override
 	public ArrayList<Integer> read_all() throws IOException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void close() throws IOException {
-		// TODO Auto-generated method stub
-		
+		ArrayList<Integer> arrayList = new ArrayList<Integer>();
+		while (!this.end_of_stream()) {
+			Integer i=this.read_next();
+			arrayList.add(i);
+		}
+		return arrayList;
 	}
 
 }
