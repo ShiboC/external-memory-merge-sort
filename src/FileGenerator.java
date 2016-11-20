@@ -1,20 +1,27 @@
-import java.io.FileNotFoundException;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
 
 public class FileGenerator {
-	private int elementNo;
+	private int nbElement;
 	
 	public FileGenerator(int element) {
-		this.elementNo = element;
+		this.nbElement = element;
 	}
 	
-	public void generateFile() throws FileNotFoundException, UnsupportedEncodingException{
-	    PrintWriter writer = new PrintWriter("input.data", "UTF-8");
-	    for(int i = 0; i < elementNo; i++) {
-	    	writer.println((int)(Math.random() * Integer.MAX_VALUE));
+	public void generateFile() throws IOException{
+		DataOutputStream out = new DataOutputStream(new FileOutputStream("input3.data"));		
+	    PrintWriter writer = new PrintWriter("input.data.normal", "UTF-8");
+	    
+	    for(int i = 0; i < nbElement; i++) {
+	    	int toBeWrite = (int) (Math.random() * Integer.MAX_VALUE);
+	    	
+	    	out.writeInt(toBeWrite);
+	    	writer.println(toBeWrite);
 	    }
+	    out.close();
 	    writer.close();
 	}
 }
