@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
 
 public class IOStream4_input implements I_InputStream {
 	private RandomAccessFile randomAccessFile;
@@ -62,6 +63,18 @@ public class IOStream4_input implements I_InputStream {
 		IOStream4_input ioStream4Read = new IOStream4_input("test.data", 5);
 		ioStream4Read.open();
 		System.out.println(ioStream4Read.read_next());
+	}
+
+	@Override
+	public ArrayList<Integer> read_all() throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void close() throws IOException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

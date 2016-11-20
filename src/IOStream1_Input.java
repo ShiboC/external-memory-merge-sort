@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 public class IOStream1_Input implements I_InputStream {
 	
@@ -14,10 +15,12 @@ public class IOStream1_Input implements I_InputStream {
 	private InputStream is;
 	private DataInputStream ds;
 	private String fileName;
+	private ArrayList<Integer> result;
 	
 	// Constructors
 	public IOStream1_Input(){
 		fileName = "IOStream1_Input.data";
+		this.result = new ArrayList<Integer>();
 	}
 	
 	public IOStream1_Input(String fileName){
@@ -42,11 +45,13 @@ public class IOStream1_Input implements I_InputStream {
 	}
 
 	@Override
-	public void real_all() throws IOException {
+	public ArrayList<Integer> read_all() throws IOException {
 		while(!this.end_of_stream())
 		{
-			System.out.println(this.read_next());
+			result.add(this.read_next());
 		}
+		
+		return result;
 	}
 	
 	@Override
@@ -55,51 +60,4 @@ public class IOStream1_Input implements I_InputStream {
 		is.close();
 	}
 
-	
-	
-//	public void readFile(String fileName)
-//	{
-//		try{
-//		
-//		// read here
-//		while(ds.available() > 0){
-//			int a  = ds.readInt();
-//			System.out.println(a);
-//		}
-//		
-//		// write here
-//		
-//		// end time
-//		// calculate time = end time - start time
-//		// close the stream
-//		ds.close();
-//		
-//		} catch (IOException e)
-//		{
-//			// do nothing
-//		}
-//	}
-	
-//	public void writeFile(String fileName, int n) throws IOException
-//	{	
-//		long startTimeNano = System.nanoTime();
-//		long startTimeMilli = System.currentTimeMillis();
-//		
-//		OutputStream os = new FileOutputStream(new File(fileName));
-//		DataOutputStream ds = new DataOutputStream(os);
-//			
-//		for(int ii = 0; ii < n; ii++)
-//			ds.writeInt(ii);
-//		
-//		long endTimeNano = System.nanoTime();
-//		long endTimeMilli = System.currentTimeMillis();
-//		
-//		long elapsedTimeNano = endTimeNano - startTimeNano;
-//		long elapsedTimeMilli = endTimeMilli - startTimeMilli;
-//		
-//		System.out.println("Elapsed Time Nano: " + elapsedTimeNano);
-//		System.out.println("Elapsed Time Milli: " + elapsedTimeMilli);
-//		
-////		System.out.println("Elapsed Time Difference: ");
-//	}
 }
