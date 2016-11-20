@@ -13,9 +13,6 @@ public class Main {
 			// Check IOStream1_Input
 			IOStream1_Input ioStream1_Input = new IOStream1_Input();
 			ioStream1_Input.open();
-			while(!ioStream1_Input.end_of_stream())
-			{
-				System.out.println(ioStream1_Input.read_next());
-			}
+			ioStream1_Input.real_all();
 		}
 }

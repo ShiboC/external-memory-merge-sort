@@ -9,13 +9,24 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class IOStream1_Input implements I_InputStream {
+	
+	// Variables
 	private InputStream is;
 	private DataInputStream ds;
 	private String fileName;
 	
+	// Constructors
+	public IOStream1_Input(){
+		fileName = "IOStream1_Input.data";
+	}
+	
+	public IOStream1_Input(String fileName){
+		this.fileName = fileName;
+	}
+	
+	// Methods
 	@Override
 	public void open() throws IOException {
-		fileName = "IOStream1_Input.data";
 		is = new FileInputStream(new File (fileName));
 		ds = new DataInputStream(is);
 	}
@@ -29,6 +40,22 @@ public class IOStream1_Input implements I_InputStream {
 	public int read_next() throws IOException {
 		return (ds.readInt());
 	}
+
+	@Override
+	public void real_all() throws IOException {
+		while(!this.end_of_stream())
+		{
+			System.out.println(this.read_next());
+		}
+	}
+	
+	@Override
+	public void close() throws IOException {
+		ds.close();
+		is.close();
+	}
+
+	
 	
 //	public void readFile(String fileName)
 //	{

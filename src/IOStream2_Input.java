@@ -51,4 +51,10 @@ public class IOStream2_Input implements I_InputStream {
 		}		
 	}
 
+	@Override
+	public void real_all() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

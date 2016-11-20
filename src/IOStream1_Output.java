@@ -5,13 +5,24 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class IOStream1_Output implements I_OutputStream {
+	
+	// Variables
 	private OutputStream os;
 	private DataOutputStream ds;
 	private String fileName;
 	
+	// Constructors
+	public IOStream1_Output(){
+		this.fileName = "IOStream1_Output.data";
+	}
+	
+	public IOStream1_Output(String fileName){
+		this.fileName = fileName;
+	}
+	
+	// Methods
 	@Override
 	public void create() throws IOException {
-		fileName = "IOStream1_Output.data";
 		os = new FileOutputStream(new File(fileName));
 		ds = new DataOutputStream(os);
 	}
