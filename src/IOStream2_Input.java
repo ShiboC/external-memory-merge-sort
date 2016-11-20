@@ -25,7 +25,7 @@ public class IOStream2_Input implements I_InputStream {
 
 	@Override
 	public boolean end_of_stream() throws IOException {
-		if (ds.available()>0) 
+		if (ds.available() > 0) 
 			return false;
 		
 		return true;
@@ -53,7 +53,10 @@ public class IOStream2_Input implements I_InputStream {
 
 	@Override
 	public void real_all() throws IOException {
-		// TODO Auto-generated method stub
+		while(!end_of_stream())
+		{
+			System.out.println(this.read_next());
+		}
 		
 	}
 
