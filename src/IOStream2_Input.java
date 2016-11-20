@@ -39,13 +39,13 @@ public class IOStream2_Input implements I_InputStream {
 	@Override
 	public void close() throws IOException {
 		try {
-			if(is!=null) is.close();
+			if(is != null) is.close();
 		} catch (IOException e) {
 			
 		}
 		
 		try {
-			if(ds!=null) ds.close();
+			if(ds != null) ds.close();
 		} catch (IOException e) {
 			
 		}		
