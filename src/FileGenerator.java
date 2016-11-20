@@ -12,7 +12,7 @@ public class FileGenerator {
 	}
 	
 	public void generateFile() throws IOException{
-		DataOutputStream out = new DataOutputStream(new FileOutputStream("input3.data"));		
+		DataOutputStream out = new DataOutputStream(new FileOutputStream("input4.data"));		
 	    PrintWriter writer = new PrintWriter("input.data.normal", "UTF-8");
 	    
 	    for(int i = 0; i < nbElement; i++) {

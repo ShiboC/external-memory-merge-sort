@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class IOStream2_Input implements I_InputStream {
 
@@ -52,12 +53,12 @@ public class IOStream2_Input implements I_InputStream {
 	}
 
 	@Override
-	public void real_all() throws IOException {
+	public ArrayList<Integer> read_all() throws IOException {
 		while(!end_of_stream())
 		{
 			System.out.println(this.read_next());
 		}
-		
+		return null;
 	}
 
 }
