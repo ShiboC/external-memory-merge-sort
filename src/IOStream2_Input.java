@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class IOStream2_Input implements I_InputStream {
+public class IOStream2_Input extends AbstractInputStream {
 
 	private InputStream is;
 	private BufferedInputStream bis;

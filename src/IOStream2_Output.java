@@ -5,7 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class IOStream2_Output implements I_OutputStream {
+public class IOStream2_Output extends AbstractOutputStream {
 
 	private OutputStream os;
 	private BufferedOutputStream bos;

@@ -1,10 +1,9 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
-public class IOStream4_Output implements I_OutputStream {
+public class IOStream4_Output extends AbstractOutputStream {
 	private RandomAccessFile randomAccessFile;
 	private FileChannel fileChannel;
 	// the 'B' element portion of file in the assignment description

@@ -22,7 +22,14 @@ public class Main {
 			fileName.add("input_multiway1.data");
 			fileName.add("input_multiway2.data");
 			
-			MultiWayMerger merger = new MultiWayMerger();
-			merger.merge(fileName);
+			List<IOStream2_Input> inputStream = new ArrayList<IOStream2_Input>();
+			for (String string : fileName) {
+				IOStream2_Input newInputStream = new IOStream2_Input(string); 
+				newInputStream.open();
+				inputStream.add(newInputStream);
+			}
+			
+			MultiWayMerger merger = new MultiWayMerger(inputStream);
+			merger.merge();
 		}
 }

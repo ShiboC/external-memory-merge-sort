@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class IOStream3_Input implements I_InputStream {
+public class IOStream3_Input extends AbstractInputStream {
 	
 	// Variables
 	private InputStream is;
@@ -25,7 +25,7 @@ public class IOStream3_Input implements I_InputStream {
 	}
 	
 	public IOStream3_Input(String filename){
-		this.fileName = fileName;
+		this.fileName = filename;
 		buffer = new ArrayList<Integer>();
 		buffer_size = 1;
 		result = new ArrayList<Integer>();

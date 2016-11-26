@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-public class IOStream3_Output implements I_OutputStream {
+public class IOStream3_Output extends AbstractOutputStream {
 	// Variables
 	private OutputStream os;
 	private DataOutputStream ds;

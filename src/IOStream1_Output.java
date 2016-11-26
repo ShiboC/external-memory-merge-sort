@@ -4,7 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class IOStream1_Output implements I_OutputStream {
+public class IOStream1_Output extends AbstractOutputStream {
 	
 	// Variables
 	private OutputStream os;

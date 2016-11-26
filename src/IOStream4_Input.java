@@ -4,7 +4,7 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
-public class IOStream4_Input implements I_InputStream {
+public class IOStream4_Input extends AbstractInputStream {
 	private RandomAccessFile randomAccessFile;
 	private FileChannel fileChannel;
 	// the 'B' element portion of file in the assignment description

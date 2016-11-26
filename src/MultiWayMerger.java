@@ -6,17 +6,15 @@ import java.util.PriorityQueue;
 
 public class MultiWayMerger {
 	
-	public void merge(List<String> fileName) throws IOException {
-		// Populate the List of input stream
-		List<IOStream2_Input> inputStream = new ArrayList<IOStream2_Input>();
-		for (String string : fileName) {
-			IOStream2_Input newInputStream = new IOStream2_Input(string); 
-			newInputStream.open();
-			inputStream.add(newInputStream);
-		}
-		
+	private List<? extends AbstractInputStream> inputStream;
+	
+	public MultiWayMerger(List<? extends AbstractInputStream> inputStream) {
+		this.inputStream = inputStream;
+	}
+	
+	public void merge() throws IOException {		
 		// Initialize a priority queue for the sorting purpose
-		PriorityQueue<Data> pq = new PriorityQueue<Data>(fileName.size(), new Comparator<Data>() {
+		PriorityQueue<Data> pq = new PriorityQueue<Data>(inputStream.size(), new Comparator<Data>() {
 
 			@Override
 			public int compare(Data o1, Data o2) {
@@ -44,13 +42,13 @@ public class MultiWayMerger {
 			}
 		}
 		
-		for(IOStream2_Input i : inputStream) {
+		for(AbstractInputStream i : inputStream) {
 			i.close();
 		}
 	}
 	
-	private boolean hasMoreData(List<IOStream2_Input> stream) throws IOException {
-		for (IOStream2_Input ioStream2_Input : stream) {
+	private boolean hasMoreData(List<? extends AbstractInputStream> stream) throws IOException {
+		for (AbstractInputStream ioStream2_Input : stream) {
 			if(!ioStream2_Input.end_of_stream()) {
 				return true;
 			}
