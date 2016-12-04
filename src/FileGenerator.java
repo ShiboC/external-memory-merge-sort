@@ -1,25 +1,26 @@
-import java.io.DataOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 
 public class FileGenerator {
 	private int nbElement;
+	private String filename;
 	
-	public FileGenerator(int element) {
+	public FileGenerator(int element, String filename) {
 		this.nbElement = element;
+		this.filename = filename;
 	}
 	
 	public void generateFile() throws IOException{
-		DataOutputStream out = new DataOutputStream(new FileOutputStream("input4.data"));		
-	    PrintWriter writer = new PrintWriter("input.data.normal", "UTF-8");
-	    
-	    for(int i = 0; i < nbElement; i++) {
-	    	int toBeWrite = (int) (Math.random() * Integer.MAX_VALUE);
+		PrintWriter writer = new PrintWriter(filename + ".normal", "UTF-8");
+		
+		IOStream2_Output out = new IOStream2_Output(filename);
+		out.create();
+		for(int i = 0; i < nbElement; i++) {
+	    	int toWrite = (int) (Math.random() * Integer.MAX_VALUE);
 	    	
-	    	out.writeInt(toBeWrite);
-	    	writer.println(toBeWrite);
+	    	out.write(toWrite);
+	    	writer.println(toWrite);
 	    }
 	    out.close();
 	    writer.close();

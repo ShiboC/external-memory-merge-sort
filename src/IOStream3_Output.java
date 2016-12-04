@@ -15,19 +15,19 @@ public class IOStream3_Output extends AbstractOutputStream {
 	
 	// Constructors
 	public IOStream3_Output(){
-		this.fileName = "IOStream3_Output.data";
+		this.setTarget("IOStream3_Output.data");
 		buffer = new ArrayList<Integer>();
 		buffer_size = 1;
 	}
 	
 	public IOStream3_Output(String fileName){
-		this.fileName = fileName;
+		this.setTarget(fileName);
 		buffer = new ArrayList<Integer>();
 		buffer_size = 1;
 	}
 	
 	public IOStream3_Output(int buffer_size){
-		this.fileName = "IOStream3_Output.data";
+		this.setTarget("IOStream3_Output.data");
 		buffer = new ArrayList<Integer>();
 		this.buffer_size = buffer_size;
 	}
@@ -35,7 +35,7 @@ public class IOStream3_Output extends AbstractOutputStream {
 	// Methods
 	@Override
 	public void create() throws IOException {
-		os = new FileOutputStream(new File(fileName));
+		os = new FileOutputStream(new File(this.target));
 		ds = new DataOutputStream(os);
 	}
 	

@@ -19,7 +19,7 @@ public class IOStream4_Output extends AbstractOutputStream {
 	public IOStream4_Output(String filePath, int bElements, int noToWrite) throws IOException {
 		this.bufferSize = bElements * 4;
 		this.position = 0;
-		this.filePath = filePath;
+		this.setTarget(filePath);
 		this.noToWrite = noToWrite;
 	}
 
@@ -45,7 +45,7 @@ public class IOStream4_Output extends AbstractOutputStream {
 
 	@Override
 	public void create() throws IOException {
-		this.randomAccessFile = new RandomAccessFile(filePath, "rw");
+		this.randomAccessFile = new RandomAccessFile(this.target, "rw");
 		this.fileChannel = randomAccessFile.getChannel();
 		
 		map(Math.min(bufferSize, noToWrite*4));

@@ -13,17 +13,18 @@ public class IOStream1_Output extends AbstractOutputStream {
 	
 	// Constructors
 	public IOStream1_Output(){
-		this.fileName = "IOStream1_Output.data";
+		this.setTarget("IOStream1_Output.data");
 	}
 	
 	public IOStream1_Output(String fileName){
-		this.fileName = fileName;
+		this.setTarget(fileName);
+		
 	}
 	
 	// Methods
 	@Override
 	public void create() throws IOException {
-		os = new FileOutputStream(new File(fileName));
+		os = new FileOutputStream(new File(this.target));
 		ds = new DataOutputStream(os);
 	}
 
