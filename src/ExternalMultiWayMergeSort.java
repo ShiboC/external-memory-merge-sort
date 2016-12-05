@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -9,45 +8,49 @@ import java.util.PriorityQueue;
 
 public class ExternalMultiWayMergeSort {
 
-	private String filename; 
 	private int M;
 	private int d;
 	private AbstractInputStream inputStream;
-	private AbstractOutputStream outputStream1;
-	private String path = "result\\";
+	private AbstractOutputStream outputStream;
+	private String outputPath = "result\\";
 	private List<String> sublist;
 	
 	public List<String> getSublist() {
 		return sublist;
 	}
 
-	public ExternalMultiWayMergeSort(int M, int d, AbstractInputStream inputStream, AbstractOutputStream outputStream){
-		File f = new File(path);
+	public ExternalMultiWayMergeSort(int M, int d, AbstractInputStream inputStream, AbstractOutputStream outputStream, String outputPath){
+		this.outputPath = outputPath + "\\";
+		File f = new File(outputPath);
 		f.mkdir();
 		this.M = M;
 		this.d = d;
 		this.inputStream = inputStream;
-		this.outputStream1 = outputStream;
+		this.outputStream = outputStream;
 	}
 	
-	public void read() throws IOException{
+	public void sort() throws IOException{
 		List<String> outputFileName = new ArrayList<String>();
 		PriorityQueue<Integer> sortedQ = new PriorityQueue<Integer>();
 		inputStream.open();
 		
 		Integer temp = 0;
 		int totalOutputStream = 0;
+		
+		int pass = 0;
+		
 		while(!inputStream.end_of_stream()){
-			System.out.println("======Start=======");
 			for(int i = 0; i < M && !inputStream.end_of_stream(); i++){
-				temp = inputStream.read_next();
-				System.out.println(temp);
+				temp = inputStream.read_next();				
 				sortedQ.add(temp);
 			}
 			
-			String outputFile = "sorted" + totalOutputStream;
-			IOStream2_Output outputStream = new IOStream2_Output(path + outputFile + ".data");
-			PrintWriter writer = new PrintWriter(path + "sorted" + totalOutputStream + ".data.normal", "UTF-8");
+			String outputFile = outputPath + pass + "-" + totalOutputStream + "sorted";
+			
+			outputStream.setTarget(outputFile);
+			
+//			IOStream2_Output outputStream = new IOStream2_Output(path + outputFile);
+			PrintWriter writer = new PrintWriter(outputFile + ".normal", "UTF-8");
 			outputStream.create();
 			
 			while(!sortedQ.isEmpty()) {
@@ -62,11 +65,21 @@ public class ExternalMultiWayMergeSort {
 			
 			totalOutputStream++;
 		}
+		inputStream.close();
 		this.sublist = outputFileName;
+		
+		LinkedList<IOStream2_Input> inputToMerge = new LinkedList<IOStream2_Input>();
+		for (String s : sublist) {
+			System.out.println(s);
+			IOStream2_Input i = new IOStream2_Input(s);
+			inputToMerge.add(i);
+		}
+		pass++;
+		merge(inputToMerge,pass);
 		System.out.println(totalOutputStream);
 	}
 	
-	public void merge(LinkedList<? extends AbstractInputStream> inputStream) throws IOException{
+	public void merge(LinkedList<? extends AbstractInputStream> inputStream, int pass) throws IOException{
 		int counter = 0;
 		int subList = 0;
 		int inputSize = inputStream.size();
@@ -74,6 +87,10 @@ public class ExternalMultiWayMergeSort {
 		
 		List<IOStream2_Input> toMerge = null;
 		LinkedList<IOStream2_Input> toMergeNext = new LinkedList<IOStream2_Input>();
+		
+		for(AbstractInputStream i : inputStream) {
+			i.open();
+		}
 		
 		while(counter < inputSize) {
 			toMerge = new ArrayList<IOStream2_Input>();
@@ -86,15 +103,20 @@ public class ExternalMultiWayMergeSort {
 			
 			subList++;
 			
-			String outputFile = subList + "sorted";
-			merger = new MultiWayMerger(toMerge, new IOStream2_Output(outputFile));
+			String outputFile = outputPath + pass + "-"+ subList + "sorted";
+			
+//			System.out.println("ToMerge :" + toMerge.size());
+//			System.out.println("Sublist :" + subList);
+//			System.out.println(outputFile);
+			merger = new MultiWayMerger(toMerge, new IOStream2_Output(outputFile), outputFile);
 			merger.merge();
 			
 			toMergeNext.add(new IOStream2_Input(outputFile));
 		}
+		System.out.println("ToMergeNext Size : " + toMergeNext.size());
 		
 		if(subList > 1) {
-			merge(toMergeNext);
+			merge(toMergeNext, pass+1);
 		}
 	}
 }

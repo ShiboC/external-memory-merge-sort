@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -5,16 +6,21 @@ import java.io.PrintWriter;
 public class FileGenerator {
 	private int nbElement;
 	private String filename;
+	private String path;
 	
-	public FileGenerator(int element, String filename) {
+	public FileGenerator(int element, String path, String filename) {
 		this.nbElement = element;
 		this.filename = filename;
+		this.path = path;
 	}
 	
 	public void generateFile() throws IOException{
-		PrintWriter writer = new PrintWriter(filename + ".normal", "UTF-8");
+		File f = new File(path);
+		f.mkdir();
 		
-		IOStream2_Output out = new IOStream2_Output(filename);
+		PrintWriter writer = new PrintWriter(path + "\\" + filename + ".normal", "UTF-8");
+		
+		IOStream2_Output out = new IOStream2_Output(path + "\\" + filename);
 		out.create();
 		for(int i = 0; i < nbElement; i++) {
 	    	int toWrite = (int) (Math.random() * Integer.MAX_VALUE);

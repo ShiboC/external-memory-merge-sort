@@ -1,30 +1,25 @@
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
 
 		public static void main(String[] args) throws IOException
 		{
-//			// Check IOStream1_Output
-//			IOStream1_Output ioStream1_Output = new IOStream1_Output();
-//			ioStream1_Output.create();
-//			ioStream1_Output.write(1001);
-//			ioStream1_Output.close();
-//			
-//			// Check IOStream1_Input
-//			IOStream2_Input ioStream1_Input = new IOStream2_Input("input6.data");
-//			ioStream1_Input.open();
-//			ioStream1_Input.read_all();
+			String inputfilePath = "input";
+			String inputfileName = "external_mway_merge_sort.data";
+			String outputfilePath = "output";
+			boolean isGenerateFile = true;
 			
-			FileGenerator generator = new FileGenerator(1000000, "external_mway_merge_sort.data");
-			generator.generateFile();
+			int M = 100;
+			int d = 80;
+			int N = 20000;
 			
-//			IOStream2_Output ioStream2_Input = new IOStream2_Output("input_test.data");
-//			ioStream2_Input.create();
-//			ioStream2_Input.write(100);
-//			ioStream2_Input.close();
-//			
+			if(isGenerateFile) {
+				FileGenerator generator = new FileGenerator(N, inputfilePath, inputfileName);
+				generator.generateFile();
+			}
+			
 			
 //			List<String> fileName = new ArrayList<>();
 //			fileName.add("input_multiway0.data");
@@ -38,9 +33,16 @@ public class Main {
 //				inputStream.add(newInputStream);
 //			}
 //			
+			
 //			MultiWayMerger merger = new MultiWayMerger(inputStream);
 //			merger.merge();
 //			IOStream1_Input x = new IOStream1_Input();
-//			ExternalMultiWayMergeSort mergeSort = new ExternalMultiWayMergeSort("A", 1, 1, x);
+			
+			
+			IOStream2_Input input = new IOStream2_Input(inputfilePath + "\\" + inputfileName);
+			IOStream2_Output output = new IOStream2_Output("output.data");
+			ExternalMultiWayMergeSort mergeSort = new ExternalMultiWayMergeSort(M, d, input, output, outputfilePath);
+			mergeSort.sort();
+			
 		}
 }
