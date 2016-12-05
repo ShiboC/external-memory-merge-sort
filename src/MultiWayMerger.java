@@ -40,7 +40,7 @@ public class MultiWayMerger {
 			Data polled = pq.poll();
 			outputStream.write(polled.getData());
 			int streamRef = polled.getStreamRef();
-			System.out.println(streamRef + " : " + polled.getData());
+//			System.out.println(streamRef + " : " + polled.getData());
 			if (!inputStream.get(streamRef).end_of_stream()) {
 				pq.add(new Data(streamRef,inputStream.get(streamRef).read_next()));
 			}
