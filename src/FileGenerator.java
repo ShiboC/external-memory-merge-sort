@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 
 public class FileGenerator {
@@ -24,5 +25,15 @@ public class FileGenerator {
 	    }
 	    out.close();
 	    writer.close();
+	}
+	
+	public static void main(String args[]) throws IOException{
+		ArrayList<FileGenerator> fileGenerator = new ArrayList<FileGenerator>();
+		for(int ii = 1; ii <= 30; ii++){
+			fileGenerator.add(new FileGenerator(10000000,"testInput" + ii + ".data"));
+		}
+		for(int ii = 1; ii <= 30; ii++){
+			fileGenerator.get(ii).generateFile();
+		}
 	}
 }

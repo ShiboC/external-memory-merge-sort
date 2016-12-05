@@ -32,6 +32,12 @@ public class IOStream3_Output extends AbstractOutputStream {
 		this.buffer_size = buffer_size;
 	}
 	
+	public IOStream3_Output(String filename, int buffer_size){
+		this.setTarget(filename);
+		buffer = new ArrayList<Integer>();
+		this.buffer_size = buffer_size;
+	}
+	
 	// Methods
 	@Override
 	public void create() throws IOException {
