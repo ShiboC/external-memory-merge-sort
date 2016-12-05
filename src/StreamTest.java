@@ -6,16 +6,20 @@ public class StreamTest {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args)throws IOException {
 		// TODO Auto-generated method stub
 		//k,the number of streams to create;N,the number of times to read/write;
 		//b,the number of elements in buffer
 		int k,N,b;
 		
 		//test with parameter k=30,N=10000,b=10
+		k=30;
+		N=10000;
+		b=10;
+		testStream1(k,N);
 	}
 	
-	public long testStream1(int k, int N) throws IOException {
+	public static long testStream1(int k, int N) throws IOException {
 		Long start=System.nanoTime();
 		for(int i=0;i<k;i++){
 			String inputFile="testInput"+i+".data";
@@ -33,7 +37,7 @@ public class StreamTest {
 		return end-start;
 	}
 	
-	public Long testStream2(int k, int N) throws IOException {
+	public static Long testStream2(int k, int N) throws IOException {
 		Long start=System.nanoTime();
 		for(int i=0;i<k;i++){
 			String inputFile="testInput"+i+".data";
@@ -50,7 +54,7 @@ public class StreamTest {
 		Long end=System.nanoTime();
 		return end-start;
 	}
-	public Long testStream3(int k, int N, int b) throws IOException {
+	public static Long testStream3(int k, int N, int b) throws IOException {
 		Long start=System.nanoTime();
 		for(int i=0;i<k;i++){
 			String inputFile="testInput"+i+".data";
@@ -67,7 +71,7 @@ public class StreamTest {
 		Long end=System.nanoTime();
 		return end-start;
 	}
-	public Long testStream4(int k, int N, int b) throws IOException {
+	public static Long testStream4(int k, int N, int b) throws IOException {
 		Long start=System.nanoTime();
 		for(int i=0;i<k;i++){
 			String inputFile="testInput"+i+".data";
