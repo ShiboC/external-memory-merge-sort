@@ -38,6 +38,13 @@ public class IOStream3_Input extends AbstractInputStream {
 		result = new ArrayList<Integer>();
 	}
 	
+	public IOStream3_Input(String filename, int buffer_size){
+		this.fileName = filename;
+		buffer = new ArrayList<Integer>();
+		this.buffer_size = buffer_size;
+		result = new ArrayList<Integer>();
+	}
+	
 	// Methods
 	@Override
 	public void open() throws IOException {
