@@ -30,8 +30,7 @@ public class IOStream1_Output extends AbstractOutputStream {
 
 	@Override
 	public void write(int data) throws IOException {
-		for(int ii = 0; ii < data; ii++)
-			ds.writeInt(ii);
+		ds.writeInt(data);
 	}
 
 	@Override
