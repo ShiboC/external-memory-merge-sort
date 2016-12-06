@@ -32,7 +32,7 @@ public class FileGenerator {
 		for(int ii = 1; ii <= 30; ii++){
 			fileGenerator.add(new FileGenerator(10000000,"testInput" + ii + ".data"));
 		}
-		for(int ii = 1; ii <= 30; ii++){
+		for(int ii = 0; ii < 30; ii++){
 			fileGenerator.get(ii).generateFile();
 		}
 	}
