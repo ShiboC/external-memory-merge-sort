@@ -36,7 +36,7 @@ public class FileGenerator {
 	public static void main(String args[]) throws IOException{
 		ArrayList<FileGenerator> fileGenerator = new ArrayList<FileGenerator>();
 		for(int ii = 1; ii <= 30; ii++){
-			fileGenerator.add(new FileGenerator(10000000,"testInput" + ii + ".data"));
+		//	fileGenerator.add(new FileGenerator(10000000,fName));
 		}
 		for(int ii = 1; ii <= 30; ii++){
 			fileGenerator.get(ii).generateFile();
