@@ -7,46 +7,93 @@ public class StreamTest {
 	}
 
 	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-		// k,the number of streams to create;N,the number of times to
-		// read/write;
-		// b,the number of elements in buffer
-		int k, N, b;
-		// Object obj = Class.forName("IOStream1_input").newInstance();
-		// test with parameter k=30,N=10000,b=10
-		k = 30;
-		N = 10000;
-		b = 10;
-		// testStream1(k,N);
-		String inputFile = "E:\\DBSA Test Input Data\\testInput" + 1 + ".data";
-		String outputFile = "E:\\DBSA Test Input Data\\testOutput" + 1 + ".data";
+		//
+		/*
+		 * System.out.println(
+		 * "Stream 2 Read & Write Increase the number of N using 1 stream"); int
+		 * N=1; for(int i=0;i<8;i++){ averageTest2(1, N, 10); N*=10 ; }
+		 */
+		// averageTest2(1, 10, 10);
+		testStream2(3, 4);
 
-		IOStream2_Input ioStream2Read = new IOStream2_Input(inputFile);
-		ioStream2Read.open();
-		IOStream2_Output ioStream2Write = new IOStream2_Output(outputFile);
-		ioStream2Write.create();
-		int temp = ioStream2Read.read_next();
-		ioStream2Read.close();
-		System.out.println(temp);
-		ioStream2Write.write(temp);
-		ioStream2Write.close();
-
-		System.out.println("end");
+		int i = 1;
+		for (i = 2; i <= 3; i++) {
+			IOStream2_Input ioStream2Read = new IOStream2_Input("E:\\DBSA Test Input Data\\testOutput" + i + ".data");
+			ioStream2Read.open();
+			ioStream2Read.read_all();
+		}
+		IOStream2_Input ioStream2Read= new IOStream2_Input("E:\\DBSA Test Input Data\\testOutput" + 1 + ".data");
+		for(int j=0;j<30;j++){
+			System.out.println(ioStream2Read.read_next());
+		}
 	}
 
 	// run "one read&write"test n times to get the average cost
+	/**
+	 * 
+	 * @param k
+	 *            the number of streams to create
+	 * @param N
+	 *            the number of elements to read/write
+	 * @param nn
+	 *            the number of times to run
+	 * @return the average time of opening k streams to read and write N
+	 *         elements with implementation method1.
+	 * @throws IOException
+	 */
+	public static long averageTest1(int k, int N, int nn) throws IOException {
+		long average = 0;
+		for (int i = 0; i < nn; i++) {
+			average += testStream1(k, N);
+		}
+		System.out.println("Average time for Stream1(in nanosecond):" + average + " with kstream=" + k + " Nelements="
+				+ N + " times=" + nn);
+		return average;
+	}
+
+	public static long averageTest2(int k, int N, int nn) throws IOException {
+		long average = 0;
+		for (int i = 0; i < nn; i++) {
+			average += testStream2(k, N);
+		}
+		System.out.println("Average time for Stream2(in nanosecond):" + average + " with kstream=" + k + " Nelements="
+				+ N + " times=" + nn);
+		return average;
+	}
+
+	public static long averageTest3(int k, int N, int b, int nn) throws IOException {
+		long average = 0;
+		for (int i = 0; i < nn; i++) {
+			average += testStream3(k, N, b);
+		}
+		System.out.println("Average time for Stream3(in nanosecond):" + average + " with kstream=" + k + " Nelements="
+				+ N + " times=" + nn);
+		return average;
+	}
+
+	public static long averageTest4(int k, int N, int b, int nn) throws IOException {
+		long average = 0;
+		for (int i = 0; i < nn; i++) {
+			average += testStream4(k, N, b);
+		}
+		System.out.println("Average time for Stream4(in nanosecond):" + average + " with kstream=" + k + " Nelements="
+				+ N + " times=" + nn);
+		return average;
+	}
 
 	/**
 	 * 
-	 * @param k the number of streams to create
-	 * @param N the number of elements to read/write
-	 * @param nn the number of times to run
-	 * @return the average time of opening k streams to read and write N elements.
+	 * @param k
+	 *            the number of streams to create
+	 * @param N
+	 *            the number of elements to read/write
+	 * @return the time(in nanoseconds) of opening k streams to read and write N
+	 *         elements.
 	 * @throws IOException
 	 */
-	public static long testStream1(int k, int N, int nn) throws IOException {
-		Long start = System.nanoTime();
-		for (int i = 0; i < k; i++) {
+	public static long testStream1(int k, int N) throws IOException {
+		long start = System.nanoTime();
+		for (int i = 1; i <= k; i++) {
 			String inputFile = "E:\\DBSA Test Input Data\\testInput" + i + ".data";
 			String outputFile = "E:\\DBSA Test Input Data\\testOutput" + i + ".data";
 			IOStream1_Input ioStream1Read = new IOStream1_Input(inputFile);
@@ -60,13 +107,13 @@ public class StreamTest {
 			ioStream1Read.close();
 			ioStream1Write.close();
 		}
-		Long end = System.nanoTime();
+		long end = System.nanoTime();
 		return end - start;
 	}
 
-	public static Long testStream2(int k, int N) throws IOException {
-		Long start = System.nanoTime();
-		for (int i = 0; i < k; i++) {
+	public static long testStream2(int k, int N) throws IOException {
+		long start = System.nanoTime();
+		for (int i = 1; i <= k; i++) {
 			String inputFile = "E:\\DBSA Test Input Data\\testInput" + i + ".data";
 			String outputFile = "E:\\DBSA Test Input Data\\testOutput" + i + ".data";
 			IOStream2_Input ioStream2Read = new IOStream2_Input(inputFile);
@@ -80,13 +127,13 @@ public class StreamTest {
 			ioStream2Read.close();
 			ioStream2Write.close();
 		}
-		Long end = System.nanoTime();
+		long end = System.nanoTime();
 		return end - start;
 	}
 
-	public static Long testStream3(int k, int N, int b) throws IOException {
-		Long start = System.nanoTime();
-		for (int i = 0; i < k; i++) {
+	public static long testStream3(int k, int N, int b) throws IOException {
+		long start = System.nanoTime();
+		for (int i = 1; i <= k; i++) {
 			String inputFile = "E:\\DBSA Test Input Data\\testInput" + i + ".data";
 			String outputFile = "E:\\DBSA Test Input Data\\testOutput" + i + ".data";
 			IOStream3_Input ioStream3Read = new IOStream3_Input(inputFile, b);
@@ -100,13 +147,13 @@ public class StreamTest {
 			ioStream3Read.close();
 			ioStream3Write.close();
 		}
-		Long end = System.nanoTime();
+		long end = System.nanoTime();
 		return end - start;
 	}
 
-	public static Long testStream4(int k, int N, int b) throws IOException {
-		Long start = System.nanoTime();
-		for (int i = 0; i < k; i++) {
+	public static long testStream4(int k, int N, int b) throws IOException {
+		long start = System.nanoTime();
+		for (int i = 1; i <= k; i++) {
 			String inputFile = "E:\\DBSA Test Input Data\\testInput" + i + ".data";
 			String outputFile = "E:\\DBSA Test Input Data\\testOutput" + i + ".data";
 			IOStream4_Input ioStream4Read = new IOStream4_Input(inputFile, b);
@@ -120,7 +167,7 @@ public class StreamTest {
 			ioStream4Read.close();
 			ioStream4Write.close();
 		}
-		Long end = System.nanoTime();
+		long end = System.nanoTime();
 		return end - start;
 	}
 }
