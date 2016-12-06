@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -8,14 +9,18 @@ public class MultiWayMerger {
 	
 	private List<? extends AbstractInputStream> inputStream;
 	private AbstractOutputStream outputStream;
+	private String filename;
 	
-	public MultiWayMerger(List<? extends AbstractInputStream> inputStream, AbstractOutputStream outputStream) throws IOException {
+	public MultiWayMerger(List<? extends AbstractInputStream> inputStream, AbstractOutputStream outputStream, String filename) throws IOException {
 		this.inputStream = inputStream;
 		this.outputStream = outputStream;
 		this.outputStream.create();
+		this.filename = filename;
 	}
 	
-	public void merge() throws IOException {		
+	public void merge() throws IOException {	
+		PrintWriter writer = new PrintWriter(filename + ".normal", "UTF-8");
+		
 		// Initialize a priority queue for the sorting purpose
 		PriorityQueue<Data> pq = new PriorityQueue<Data>(inputStream.size(), new Comparator<Data>() {
 
@@ -39,6 +44,7 @@ public class MultiWayMerger {
 		while(hasMoreData(inputStream) || pq.size() > 0) {
 			Data polled = pq.poll();
 			outputStream.write(polled.getData());
+			writer.println(polled.getData());
 			int streamRef = polled.getStreamRef();
 //			System.out.println(streamRef + " : " + polled.getData());
 			if (!inputStream.get(streamRef).end_of_stream()) {
@@ -46,6 +52,7 @@ public class MultiWayMerger {
 			}
 		}
 		outputStream.close();
+		writer.close();
 		for(AbstractInputStream i : inputStream) {
 			i.close();
 		}

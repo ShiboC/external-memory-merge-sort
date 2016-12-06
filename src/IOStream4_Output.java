@@ -6,7 +6,7 @@ import java.nio.channels.FileChannel;
 public class IOStream4_Output extends AbstractOutputStream {
 	private RandomAccessFile randomAccessFile;
 	private FileChannel fileChannel;
-	// the 'B' element portion of file in the assignment description
+	// the buffer size of 'B' element portion of file in the assignment description
 	private int bufferSize;
 	// the current position in the file that need to be mapped
 	private int position;
@@ -31,6 +31,7 @@ public class IOStream4_Output extends AbstractOutputStream {
 
 	@Override
 	public void write(int value) throws IOException {
+		//if the buffer is empty, map new integers into the memory
 		if (!mappedByteBuffer.hasRemaining()) {
 			map(Math.min(bufferSize, noToWrite*4-position));
 		}
