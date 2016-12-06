@@ -6,86 +6,101 @@ public class StreamTest {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static void main(String[] args)throws IOException {
+	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		//k,the number of streams to create;N,the number of times to read/write;
-		//b,the number of elements in buffer
-		int k,N,b;
-		
-		//test with parameter k=30,N=10000,b=10
-		k=30;
-		N=10000;
-		b=10;
-		testStream1(k,N);
+		// k,the number of streams to create;N,the number of times to
+		// read/write;
+		// b,the number of elements in buffer
+		int k, N, b;
+		// Object obj = Class.forName("IOStream1_input").newInstance();
+		// test with parameter k=30,N=10000,b=10
+		k = 30;
+		N = 10000;
+		b = 10;
+		// testStream1(k,N);
 	}
-	
+
+	public static void average(String stream, int n) {
+
+	}
+
 	public static long testStream1(int k, int N) throws IOException {
-		Long start=System.nanoTime();
-		for(int i=0;i<k;i++){
-			String inputFile="testInput"+i+".data";
-			String outputFile="testOutput"+i+".data";
-			for(int j=0;j<N;j++){
-				IOStream1_Input ioStream1Read = new IOStream1_Input(inputFile);
-				ioStream1Read.open();
-				int temp=ioStream1Read.read_next();
-				IOStream1_Output ioStream1Write = new IOStream1_Output(outputFile);
-				ioStream1Write.create();
+		Long start = System.nanoTime();
+		for (int i = 0; i < k; i++) {
+			String inputFile = "testInput" + i + ".data";
+			String outputFile = "testOutput" + i + ".data";
+			IOStream1_Input ioStream1Read = new IOStream1_Input(inputFile);
+			ioStream1Read.open();
+			IOStream1_Output ioStream1Write = new IOStream1_Output(outputFile);
+			ioStream1Write.create();
+			for (int j = 0; j < N; j++) {
+				int temp = ioStream1Read.read_next();
 				ioStream1Write.write(temp);
-			}	
+			}
+			ioStream1Read.close();
+			ioStream1Write.close();
 		}
-		Long end=System.nanoTime();
-		return end-start;
+		Long end = System.nanoTime();
+		return end - start;
 	}
-	
+
 	public static Long testStream2(int k, int N) throws IOException {
-		Long start=System.nanoTime();
-		for(int i=0;i<k;i++){
-			String inputFile="testInput"+i+".data";
-			String outputFile="testOutput"+i+".data";
-			for(int j=0;j<N;j++){
-				IOStream2_Input ioStream2Read = new IOStream2_Input(inputFile);
-				ioStream2Read.open();
-				int temp=ioStream2Read.read_next();
-				IOStream2_Output ioStream2Write = new IOStream2_Output(outputFile);
-				ioStream2Write.create();
+		Long start = System.nanoTime();
+		for (int i = 0; i < k; i++) {
+			String inputFile = "testInput" + i + ".data";
+			String outputFile = "testOutput" + i + ".data";
+			IOStream2_Input ioStream2Read = new IOStream2_Input(inputFile);
+			ioStream2Read.open();
+			IOStream2_Output ioStream2Write = new IOStream2_Output(outputFile);
+			ioStream2Write.create();
+			for (int j = 0; j < N; j++) {
+				int temp = ioStream2Read.read_next();
 				ioStream2Write.write(temp);
-			}	
+			}
+			ioStream2Read.close();
+			ioStream2Write.close();
 		}
-		Long end=System.nanoTime();
-		return end-start;
+		Long end = System.nanoTime();
+		return end - start;
 	}
+
 	public static Long testStream3(int k, int N, int b) throws IOException {
-		Long start=System.nanoTime();
-		for(int i=0;i<k;i++){
-			String inputFile="testInput"+i+".data";
-			String outputFile="testOutput"+i+".data";
-			for(int j=0;j<N;j++){
-				IOStream3_Input ioStream3Read = new IOStream3_Input(inputFile, b);
-				ioStream3Read.open();
-				int temp=ioStream3Read.read_next();
-				IOStream3_Output ioStream3Write = new IOStream3_Output(outputFile, b);
-				ioStream3Write.create();
+		Long start = System.nanoTime();
+		for (int i = 0; i < k; i++) {
+			String inputFile = "testInput" + i + ".data";
+			String outputFile = "testOutput" + i + ".data";
+			IOStream3_Input ioStream3Read = new IOStream3_Input(inputFile, b);
+			ioStream3Read.open();
+			IOStream3_Output ioStream3Write = new IOStream3_Output(outputFile, b);
+			ioStream3Write.create();
+			for (int j = 0; j < N; j++) {
+				int temp = ioStream3Read.read_next();
 				ioStream3Write.write(temp);
-			}	
+			}
+			ioStream3Read.close();
+			ioStream3Write.close();
 		}
-		Long end=System.nanoTime();
-		return end-start;
+		Long end = System.nanoTime();
+		return end - start;
 	}
+
 	public static Long testStream4(int k, int N, int b) throws IOException {
-		Long start=System.nanoTime();
-		for(int i=0;i<k;i++){
-			String inputFile="testInput"+i+".data";
-			String outputFile="testOutput"+i+".data";
-			for(int j=0;j<N;j++){
-				IOStream4_Input ioStream4Read = new IOStream4_Input(inputFile, b);
-				ioStream4Read.open();
-				int temp=ioStream4Read.read_next();
-				IOStream4_Output ioStream4Write = new IOStream4_Output(outputFile, b, N);
-				ioStream4Write.create();
+		Long start = System.nanoTime();
+		for (int i = 0; i < k; i++) {
+			String inputFile = "testInput" + i + ".data";
+			String outputFile = "testOutput" + i + ".data";
+			IOStream4_Input ioStream4Read = new IOStream4_Input(inputFile, b);
+			ioStream4Read.open();
+			IOStream4_Output ioStream4Write = new IOStream4_Output(outputFile, b, N);
+			ioStream4Write.create();
+			for (int j = 0; j < N; j++) {
+				int temp = ioStream4Read.read_next();
 				ioStream4Write.write(temp);
-			}	
+			}
+			ioStream4Read.close();
+			ioStream4Write.close();
 		}
-		Long end=System.nanoTime();
-		return end-start;
+		Long end = System.nanoTime();
+		return end - start;
 	}
 }

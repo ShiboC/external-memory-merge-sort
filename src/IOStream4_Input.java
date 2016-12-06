@@ -52,6 +52,7 @@ public class IOStream4_Input extends AbstractInputStream {
 	@Override
 	// check end_of_stream first then read_next
 	public int read_next() throws IOException {
+		//if the buffer is empty and the stream hasnt reach to the end, map new integers into the memory
 		if (!end_of_stream() && !mappedByteBuffer.hasRemaining()) {
 			map();
 		}

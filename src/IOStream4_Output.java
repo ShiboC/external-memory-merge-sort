@@ -31,6 +31,7 @@ public class IOStream4_Output extends AbstractOutputStream {
 
 	@Override
 	public void write(int value) throws IOException {
+		//if the buffer is empty, map new integers into the memory
 		if (!mappedByteBuffer.hasRemaining()) {
 			map(Math.min(bufferSize, noToWrite*4-position));
 		}
