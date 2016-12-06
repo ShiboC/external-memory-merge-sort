@@ -12,6 +12,7 @@ public class IOStream3_Output extends AbstractOutputStream {
 	private String fileName;
 	private ArrayList<Integer> buffer;
 	private int buffer_size;
+	private int n_elements;
 	
 	// Constructors
 	public IOStream3_Output(){
@@ -20,22 +21,11 @@ public class IOStream3_Output extends AbstractOutputStream {
 		buffer_size = 1;
 	}
 	
-	public IOStream3_Output(String fileName){
-		this.setTarget(fileName);
-		buffer = new ArrayList<Integer>();
-		buffer_size = 1;
-	}
-	
-	public IOStream3_Output(int buffer_size){
-		this.setTarget("IOStream3_Output.data");
-		buffer = new ArrayList<Integer>();
-		this.buffer_size = buffer_size;
-	}
-	
-	public IOStream3_Output(String filename, int buffer_size){
+	public IOStream3_Output(String filename, int buffer_size, int n_elements){
 		this.setTarget(filename);
 		buffer = new ArrayList<Integer>();
 		this.buffer_size = buffer_size;
+		this.n_elements = n_elements;
 	}
 	
 	// Methods
@@ -47,39 +37,26 @@ public class IOStream3_Output extends AbstractOutputStream {
 	
 	@Override
 	public void write(int data) throws IOException {
-		int n = 0;
-		
-//		int counter = 0;
-		// while there is an element that needs to be written
-		while(n < data){
-//			System.out.println(counter++ + " check more element");
-			if(buffer.size() < buffer_size){
-//				System.out.println(counter++ + " buffer available");
-				// if buffer is available, add element into the buffer
-				while(buffer.size() < buffer_size && n < data){
-//					System.out.println(counter++ + " add element into buffer");
-					buffer.add(n++);
-				}
+		if(buffer.size() < buffer_size){
+			// if the buffer is not full, input the data into buffer
+			buffer.add(data);
+			n_elements--;
+		} else {
+			// else write the buffer into storage, then add the data into buffer
+			while(buffer.size() > 0) {
+				ds.writeInt(buffer.get(0));
+				buffer.remove(0);
 			}
-			// else write element into storage
-			else
-			{
-//				System.out.println(counter++ + " buffer not available");
-				while(buffer.size() > 0) {
-//					System.out.println(counter++ + " write element into storage");
-					ds.writeInt(buffer.get(0));
-//					System.out.println("Written Element: " + buffer.get(0));
-					buffer.remove(0);
-				}
-			}
+			buffer.add(data);
+			n_elements--;
 		}
 		
-		// write the remaining element in the buffer into storage
-		while(buffer.size() > 0) {
-//			System.out.println(counter++ + " last write element into storage");
-			ds.writeInt(buffer.get(0));
-//			System.out.println("Written Element: " + buffer.get(0));
-			buffer.remove(0);
+		// if the number of elements has been reached, write all data
+		if(n_elements == 0){
+			while(buffer.size() > 0) {
+				ds.writeInt(buffer.get(0));
+				buffer.remove(0);
+			}
 		}
 	}
 	
@@ -88,5 +65,4 @@ public class IOStream3_Output extends AbstractOutputStream {
 		ds.close();
 		os.close();
 	}
-	
 }
