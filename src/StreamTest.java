@@ -9,48 +9,64 @@ public class StreamTest {
 	public static void main(String[] args) throws Exception {
 
 		System.out.println("Stream 1. Increase the number of N using 1 stream");
-		int N = 1;  //10000
+		int N = 1; // 10000
 		for (int i = 0; i < 5; i++) {
 			averageTest1(1, N, 10);
 			N *= 10;
 		}
-		System.out.println("Stream 1. Increase the number of stream using N = 1000");
+		System.out.println("Stream 1. Increase the number of stream using N = 10000");
 		for (int i = 1; i <= 30; i++) {
-			averageTest1(i, 1000, 10);
+			averageTest1(i, 10000, 10);
 		}
 		System.out.println("Stream 2. Increase the number of N using 1 stream");
-		 N = 1;  //10000
+		N = 1; // 10000
 		for (int i = 0; i < 5; i++) {
 			averageTest2(1, N, 10);
 			N *= 10;
 		}
-		System.out.println("Stream 2. Increase the number of stream using N = 1000");
+		System.out.println("Stream 2. Increase the number of stream using N = 10000");
 		for (int i = 1; i <= 30; i++) {
-			averageTest2(i, 1000, 10);
+			averageTest2(i, 10000, 10);
 		}
-/*		System.out.println("Stream 3. Increase the number of N using 1 stream");
-		 N = 1;  //10000
+		System.out.println("Stream 3. Increase the number of N using 1 stream 1 B");
+		N = 1; // 10000
 		for (int i = 0; i < 5; i++) {
-			averageTest3(1, N, 10);
+			averageTest3(1, N, 1, 10);
 			N *= 10;
 		}
-		System.out.println("Stream 3. Increase the number of stream using N = 1000");
-		for (int i = 1; i <= 30; i++) {
-			averageTest3(i, 1000, 10);
-		}*/
-		System.out.println("Stream 4. Increase the number of N using 1 stream");
-		 N = 1;  //10000
+		System.out.println("Stream 3. Increase the number of B using 1 stream N = 10000");
+		// B increase from 1 to 1000
+		int b = 1; // 10000
 		for (int i = 0; i < 5; i++) {
-			averageTest4(1, N, 10 ,10);
+			averageTest3(1, 10000, b, 10);
+			b *= 10;
+		}
+
+		System.out.println(
+				"Stream 3. Increase the number of stream using N = 10000 and B = 10000 (or the optimal value of B)");
+		for (int i = 1; i <= 30; i++) {
+			averageTest3(i, 10000, 10000, 10);
+		}
+		System.out.println("Stream 4. Increase the number of N using 1 stream 1 B");
+		N = 1; // 10000
+		for (int i = 0; i < 5; i++) {
+			averageTest4(1, N, 1, 10);
 			N *= 10;
 		}
-		System.out.println("Stream 4. Increase the number of stream using N = 1000");
+		System.out.println("Stream 4. Increase the number of B using 1 stream N = 10000");
+		// B increase from 1 to 1000
+		b = 1; // 10000
+		for (int i = 0; i < 5; i++) {
+			averageTest4(1, 10000, b, 10);
+			b *= 10;
+		}
+		System.out.println(
+				"Stream 4. Increase the number of stream using N = 10000 and B = 10000 (or the optimal value of B)");
 		for (int i = 1; i <= 30; i++) {
-			averageTest4(i, 1000, 10, 10);
+			averageTest4(i, 10000, 10000, 10);
 		}
 
-
-	//	averageTest2(1, 10, 10);
+		// averageTest2(1, 10, 10);
 		// testStream1(3, 4);
 
 		/*
@@ -82,7 +98,7 @@ public class StreamTest {
 		for (int i = 0; i < nn; i++) {
 			average += testStream1(k, N);
 		}
-		System.out.println("Average time for Stream1(in nanosecond):" + average + " with kstream=" + k + " Nelements="
+		System.out.println("Average time for Stream1(in millisecond):" + average + " with kstream=" + k + " Nelements="
 				+ N + " times=" + nn);
 		return average;
 	}
@@ -92,7 +108,7 @@ public class StreamTest {
 		for (int i = 0; i < nn; i++) {
 			average += testStream2(k, N);
 		}
-		System.out.println("Average time for Stream2(in nanosecond):" + average + " with kstream=" + k + " Nelements="
+		System.out.println("Average time for Stream2(in millisecond):" + average + " with kstream=" + k + " Nelements="
 				+ N + " times=" + nn);
 		return average;
 	}
@@ -102,8 +118,8 @@ public class StreamTest {
 		for (int i = 0; i < nn; i++) {
 			average += testStream3(k, N, b);
 		}
-		System.out.println("Average time for Stream3(in nanosecond):" + average + " with kstream=" + k + " Nelements="
-				+ N + " times=" + nn);
+		System.out.println("Average time for Stream3(in millisecond):" + average + " with kstream=" + k + " Nelements="
+				+ N + " buffer=" + b + " times=" + nn);
 		return average;
 	}
 
@@ -112,8 +128,8 @@ public class StreamTest {
 		for (int i = 0; i < nn; i++) {
 			average += testStream4(k, N, b);
 		}
-		System.out.println("Average time for Stream4(in nanosecond):" + average + " with kstream=" + k + " Nelements="
-				+ N + " times=" + nn);
+		System.out.println("Average time for Stream4(in millisecond):" + average + " with kstream=" + k + " Nelements="
+				+ N + " buffer=" + b + " times=" + nn);
 		return average;
 	}
 
@@ -123,8 +139,8 @@ public class StreamTest {
 	 *            the number of streams to create
 	 * @param N
 	 *            the number of elements to read/write
-	 * @return the time(in nanoseconds) of opening k streams to read and write N
-	 *         elements.
+	 * @return the time(in milliseconds) of opening k streams to read and write
+	 *         N elements.
 	 * @throws IOException
 	 */
 	public static long testStream1(int k, int N) throws IOException {
@@ -174,7 +190,7 @@ public class StreamTest {
 			String outputFile = "E:\\DBSA Test Input Data\\testOutput" + i + ".data";
 			IOStream3_Input ioStream3Read = new IOStream3_Input(inputFile, b);
 			ioStream3Read.open();
-			IOStream3_Output ioStream3Write = new IOStream3_Output(outputFile, b);
+			IOStream3_Output ioStream3Write = new IOStream3_Output(outputFile, b, N);
 			ioStream3Write.create();
 			for (int j = 0; j < N; j++) {
 				int temp = ioStream3Read.read_next();
