@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class IOStream2_Input extends AbstractInputStream {
 
@@ -54,11 +55,12 @@ public class IOStream2_Input extends AbstractInputStream {
 
 	@Override
 	public ArrayList<Integer> read_all() throws IOException {
+		ArrayList<Integer> result = new ArrayList<Integer>();
 		while(!end_of_stream())
 		{
-			System.out.println(this.read_next());
+			result.add(this.read_next());
 		}
-		return null;
+		return result;
 	}
 
 }

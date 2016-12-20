@@ -190,7 +190,7 @@ public class StreamTest {
 			String outputFile = "E:\\DBSA Test Input Data\\testOutput" + i + ".data";
 			IOStream3_Input ioStream3Read = new IOStream3_Input(inputFile, b);
 			ioStream3Read.open();
-			IOStream3_Output ioStream3Write = new IOStream3_Output(outputFile, b, N);
+			IOStream3_Output ioStream3Write = new IOStream3_Output(outputFile, b);
 			ioStream3Write.create();
 			for (int j = 0; j < N; j++) {
 				int temp = ioStream3Read.read_next();
