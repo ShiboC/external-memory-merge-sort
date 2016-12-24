@@ -24,32 +24,32 @@ public class StreamTest {
 //		}
 //		System.out.println("Stream 2. Increase the number of N using 1 stream");
 //		N = 1; // 10000
-//		for (int i = 0; i < 6; i++) {
+//		for (int i = 0; i < 7; i++) {
 //			averageTest2(1, N, 10);
 //			N *= 10;
 //		}
 //		System.out.println("Stream 2. Increase the number of stream using N = 10000");
 //		for (int i = 1; i <= 30; i++) {
-//			averageTest2(i, 100000, 10);
+//			averageTest2(i, 1000000, 10);
 //		}
 //		System.out.println("Stream 3. Increase the number of N using 1 stream 1 B");
 //		N = 1; // 10000
-//		for (int i = 0; i < 5; i++) {
+//		for (int i = 0; i < 7; i++) {
 //			averageTest3(1, N, 1, 10);
 //			N *= 10;
 //		}
 //		System.out.println("Stream 3. Increase the number of B using 1 stream N = 10000");
 //		// B increase from 1 to 1000
-
-//		for (int i = 0; i < 5; i++) {
-//			averageTest3(1, 10000, b, 10);
+//
+//		for (int i = 0; i < 7; i++) {
+//			averageTest3(1, 1000000, b, 10);
 //			b *= 10;
 //		}
-//
+
 //		System.out.println(
 //				"Stream 3. Increase the number of stream using N = 10000 and B = 10000 (or the optimal value of B)");
 //		for (int i = 1; i <= 30; i++) {
-//			averageTest3(i, 10000, 10000, 10);
+//			averageTest3(i, 1000000, 1000000, 10);
 //		}
 //		System.out.println("Stream 4. Increase the number of N using 1 stream 1 B");
 //		N = 1; // 10000
@@ -60,8 +60,8 @@ public class StreamTest {
 		System.out.println("Stream 4. Increase the number of B using 1 stream N = 10000");
 		// B increase from 1 to 1000
 		b = 1; // 10000
-		for (int i = 0; i < 6; i++) {
-			averageTest4(1, 100000, b, 10);
+		for (int i = 0; i < 7; i++) {
+			averageTest4(1, 1000000, b, 10);
 			b *= 10;
 		}
 //		System.out.println(
