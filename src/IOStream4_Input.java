@@ -10,6 +10,7 @@ public class IOStream4_Input extends AbstractInputStream {
 	private FileChannel fileChannel;
 	// the 'B' element portion of file in the assignment description
 	private int bufferSize;
+
 	// the current position in the file that need to be mapped
 	private long filePosition;
 	// A direct byte buffer whose content is a memory-mapped region of a file
@@ -17,19 +18,25 @@ public class IOStream4_Input extends AbstractInputStream {
 	private String filePath;
 	private long fileSize;
 	private int bufferPosition;
+	private long currentBufferSize;
 
 	public IOStream4_Input(String filePath, int bElements) throws IOException {
 		this.bufferSize = bElements * 4;
 		this.filePosition = 0;
 		this.filePath = filePath;
 	}
+	
+	public long getFileSize() {
+		return fileSize;
+	}
 
 	// map the file into the memory
 	private void map() throws IOException {
 		long mapSize = Math.min(fileSize - filePosition, bufferSize);
+		currentBufferSize = mapSize;
 		if (filePosition < fileSize) {
 			mappedByteBuffer = fileChannel.map(FileChannel.MapMode.READ_ONLY, filePosition, mapSize);
-			filePosition += bufferSize;
+			filePosition += mapSize;
 		}
 		resetBufferPosition();
 	}
@@ -53,7 +60,7 @@ public class IOStream4_Input extends AbstractInputStream {
 	}
 	
 	private boolean hasRemaining(){
-		return (bufferPosition < bufferSize);
+		return (bufferPosition < currentBufferSize);
 	}
 	
 	private void resetBufferPosition(){

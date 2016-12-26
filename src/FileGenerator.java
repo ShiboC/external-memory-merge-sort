@@ -1,7 +1,7 @@
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.Random;
 
 
 public class FileGenerator {
@@ -24,7 +24,11 @@ public class FileGenerator {
 		IOStream2_Output out = new IOStream2_Output(path + "\\" + filename);
 		out.create();
 		for(int i = 0; i < nbElement; i++) {
-	    	int toWrite = (int) (Math.random() * Integer.MAX_VALUE);
+	    	Random rand = new Random();
+	    	boolean isPositive = rand.nextBoolean();
+	    	int toWrite = rand.nextInt(Integer.MAX_VALUE);
+	    	
+			toWrite = isPositive ? toWrite : (toWrite * -1);
 	    	
 	    	out.write(toWrite);
 	    	writer.println(toWrite);

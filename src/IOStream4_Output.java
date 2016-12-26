@@ -16,15 +16,19 @@ public class IOStream4_Output extends AbstractOutputStream {
 	private MappedByteBuffer mappedByteBuffer;
 	private String filePath;
 	// specify the number of elements to write
-	private int noToWrite;
+	private long noToWrite;
 	private long fileSize;
 	private int bufferPosition;
 
-	public IOStream4_Output(String filePath, int bElements, int noToWrite) throws IOException {
+	public IOStream4_Output(String filePath, int bElements, long noToWrite) throws IOException {
 		this.bufferSize = bElements * 4;
 		this.filePosition = 0;
 		this.setTarget(filePath);
 		this.noToWrite = noToWrite;
+	}
+	
+	public int getBufferSize() {
+		return bufferSize;
 	}
 
 	// map the file into the memory
