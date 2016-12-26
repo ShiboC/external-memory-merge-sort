@@ -62,5 +62,38 @@ public class IOStream2_Input extends AbstractInputStream {
 		}
 		return result;
 	}
+	
+	// main file for checking this implementation correctness
+	public static void main(String[] args) throws IOException {
+		long[] elapsedSystemTimeUserTime = new long[2];
+		long[] start = new long[2];
+		start[0] = CPUUtils.getSystemTime();
+		start[1] = CPUUtils.getUserTime();
+		
+		int i = 1;
+		int N = 10;
+		int b = 3;
+		
+		String inputFile = "testInput0.data";
+		String outputFile = "testOutput0.data";
+		
+		IOStream2_Input ioStream2Read = new IOStream2_Input(inputFile);
+		ioStream2Read.open();
+		IOStream2_Output ioStream2Write = new IOStream2_Output(outputFile);
+		ioStream2Write.create();
+		for (int j = 0; j < N; j++) {
+			int temp = ioStream2Read.read_next();
+			ioStream2Write.write(temp);
+		}
+		ioStream2Read.close();
+		ioStream2Write.close();
+
+		elapsedSystemTimeUserTime[1] = CPUUtils.getUserTime() - start[1];
+		elapsedSystemTimeUserTime[0] = CPUUtils.getSystemTime() - start[0];
+		
+		System.out.println("SystemTime & UserTime;" + elapsedSystemTimeUserTime[0]
+				+ ";" + elapsedSystemTimeUserTime[1]);
+	
+	}
 
 }

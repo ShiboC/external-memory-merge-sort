@@ -40,13 +40,13 @@ public class StreamTest {
 //			averageTest3(1, Narray[i], 4096, 10);
 ////			N *= 10;
 //		}
-//		System.out.println("Stream 3. Increase the number of B using 1 stream N = 10000");
-//		// B increase from 1 to 1000
-//		b = 64;
-//		for (int i = 1; i < 16; i++) {
-//			averageTest3(1, Narray[8], b, 10);
-//			b *= 2;
-//		}
+		System.out.println("Stream 3. Increase the number of B using 1 stream N = 10000");
+		// B increase from 1 to 1000
+		b = 64;
+		for (int i = 1; i < 19; i++) {
+			averageTest3(1, Narray[9], b, 10);
+			b *= 2;
+		}
 
 //		System.out.println(
 //				"Stream 3. Increase the number of stream using N = 10000 and B = 10000 (or the optimal value of B)");
@@ -59,13 +59,13 @@ public class StreamTest {
 //			averageTest4(1, Narray[i], 4096, 10);
 ////			N *= 10;
 //		}
-		System.out.println("Stream 4. Increase the number of B using 1 stream N = 10000");
-		// B increase from 1 to 1000
-		b = 64; // 10000
-		for (int i = 0; i < 16; i++) {
-			averageTest4(1, Narray[8], b, 10);
-			b *= 2;
-		}
+//		System.out.println("Stream 4. Increase the number of B using 1 stream N = 10000");
+//		 B increase from 1 to 1000
+//		b = 64; // 10000
+//		for (int i = 0; i < 18; i++) {
+//			averageTest4(1, Narray[9], b, 10);
+//			b *= 2;
+//		}
 //		System.out.println(
 //				"Stream 4. Increase the number of stream using N = 10000 and B = 10000 (or the optimal value of B)");
 //		for (int i = 1; i <= 30; i++) {
@@ -98,14 +98,25 @@ public class StreamTest {
 	 * @return the average time of opening k streams to read and write N
 	 *         elements with implementation method1.
 	 * @throws IOException
+	 * @throws InterruptedException 
 	 */
-	public static long averageTest1(int k, int N, int nn) throws IOException {
-		long average = 0;
+	public static long[] averageTest1(int k, int N, int nn) throws IOException, InterruptedException {
+		long average[] = new long[2];
+		average[0] = 0;
+		average[1] = 0;
+		
 		for (int i = 0; i < nn; i++) {
-			average += testStream1(k, N);
+			long result[] = testStream1(k, N);
+			average[0] += result[0];
+			average[1] += result[1];
+			Thread.sleep(500);
 		}
-		System.out.println("Average time for Stream1(in millisecond):" + average + " with kstream=" + k + " Nelements="
-				+ N + " times=" + nn);
+		average[0] /= nn;
+		average[1] /= nn;
+		System.out.println("Average time for Stream1 with kstream=" + k + 
+				" Nelements="+ N + " times=" + nn + "(in SystemTime & UserTime);"
+				+ average[0] + ";" + average[1] 
+				);
 		return average;
 	}
 
@@ -113,6 +124,7 @@ public class StreamTest {
 		long average[] = new long[2];
 		average[0] = 0;
 		average[1] = 0;
+		
 		for (int i = 0; i < nn; i++) {
 			long result[] = testStream2(k, N);
 			average[0] += result[0];
@@ -175,8 +187,12 @@ public class StreamTest {
 	 *         N elements.
 	 * @throws IOException
 	 */
-	public static long testStream1(int k, int N) throws IOException {
-		long start = System.currentTimeMillis();
+	public static long[] testStream1(int k, int N) throws IOException {
+		long[] elapsedSystemTimeUserTime = new long[2];
+		long[] start = new long[2];
+		start[0] = CPUUtils.getSystemTime();
+		start[1] = CPUUtils.getUserTime();
+		
 		for (int i = 1; i <= k; i++) {
 			String inputFile = pathInput + i + ".data";
 			String outputFile = pathOutput + i + ".data";
@@ -191,8 +207,10 @@ public class StreamTest {
 			ioStream1Read.close();
 			ioStream1Write.close();
 		}
-		long end = System.currentTimeMillis();
-		return end - start;
+		elapsedSystemTimeUserTime[1] = CPUUtils.getUserTime() - start[1];
+		elapsedSystemTimeUserTime[0] = CPUUtils.getSystemTime() - start[0];
+		
+		return elapsedSystemTimeUserTime;
 	}
 
 	public static long[] testStream2(int k, int N) throws IOException {

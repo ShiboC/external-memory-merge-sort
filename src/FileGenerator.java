@@ -34,12 +34,14 @@ public class FileGenerator {
 	}
 	
 	public static void main(String args[]) throws IOException{
-		ArrayList<FileGenerator> fileGenerator = new ArrayList<FileGenerator>();
-		for(int ii = 1; ii <= 30; ii++){
-		//	fileGenerator.add(new FileGenerator(10000000,fName));
-		}
-		for(int ii = 0; ii < 30; ii++){
-			fileGenerator.get(ii).generateFile();
-		}
+//		ArrayList<FileGenerator> fileGenerator = new ArrayList<FileGenerator>();
+//		for(int ii = 1; ii <= 30; ii++){
+////			fileGenerator.add(new FileGenerator(10000000,fName));
+//		}
+//		for(int ii = 0; ii < 30; ii++){
+//			fileGenerator.get(ii).generateFile();
+//		}
+		FileGenerator fileGenerator = new FileGenerator(4000000,"C:\\Users\\pandu.wicaksono91\\Documents\\GitHub\\external-memory-merge-sort\\","test.data");
+		fileGenerator.generateFile();
 	}
 }
