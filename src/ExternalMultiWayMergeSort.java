@@ -15,10 +15,10 @@ public class ExternalMultiWayMergeSort {
 	private List<String> sublist;
 	private int streamBufferSize;
 	private boolean debug;
-	private long elapsedTime;
+	private long[] elapsedSystemTimeUserTime;
 	
-	public long getElapsedTime() {
-		return elapsedTime;
+	public long[] getElapsedTime() {
+		return elapsedSystemTimeUserTime;
 	}
 
 	public List<String> getSublist() {
@@ -37,7 +37,9 @@ public class ExternalMultiWayMergeSort {
 	}
 	
 	public void sort() throws IOException{
-		long start = CPUUtils.getSystemTime();
+		long start[] = new long[2];
+		start[0] = CPUUtils.getSystemTime();
+		start[1] = CPUUtils.getUserTime();
 		
 		List<String> outputFileName = new ArrayList<String>();
 		PriorityQueue<Integer> sortedQ = new PriorityQueue<Integer>();
@@ -96,7 +98,8 @@ public class ExternalMultiWayMergeSort {
 			merge(inputToMerge,pass);
 		}
 		
-		this.elapsedTime = CPUUtils.getSystemTime() - start;
+		this.elapsedSystemTimeUserTime[1] = CPUUtils.getUserTime() - start[1];
+		this.elapsedSystemTimeUserTime[0] = CPUUtils.getSystemTime() - start[0];
 	}
 	
 	public void merge(LinkedList<? extends AbstractInputStream> inputStream, int pass) throws IOException{

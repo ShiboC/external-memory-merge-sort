@@ -24,7 +24,9 @@ public class Main {
 			ExternalMultiWayMergeSort mergeSort = new ExternalMultiWayMergeSort(M, d, input, outputfilePath, B, debug);
 			mergeSort.sort();
 			System.out.println("===========DONE===========");
-			System.out.println("Elapsed Time : " + mergeSort.getElapsedTime());
+			long[] elapsedSystemTimeUserTime = mergeSort.getElapsedTime();
+			System.out.println("Elapsed Time (in SystemTime & UserTime):" 
+					+ elapsedSystemTimeUserTime[0] + ";" + elapsedSystemTimeUserTime[1]);
 			
 		}
 }
