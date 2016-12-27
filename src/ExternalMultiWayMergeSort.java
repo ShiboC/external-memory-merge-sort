@@ -34,6 +34,7 @@ public class ExternalMultiWayMergeSort {
 		this.inputStream = inputStream;
 		this.streamBufferSize = bufferSize;
 		this.debug = debug;
+		this.elapsedSystemTimeUserTime = new long[2];
 	}
 	
 	public void sort() throws IOException{
