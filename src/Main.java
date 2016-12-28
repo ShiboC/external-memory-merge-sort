@@ -10,16 +10,28 @@ public class Main {
 		int M = 1000;
 		int d = 223;
 		int N = 2000000;
-		int B = 4096;
-		int nn = 5;
+		int B = 32768;
+		int nn = 10;
 		
-		MergeSortTest mergeSort = new MergeSortTest(isGenerateFile, debug, M, d, N, B, nn);
-		long result[] = mergeSort.run();
+		int Narray[] = {15625,31250,62500,
+				125000,250000,500000,
+				1000000,2000000,
+				4000000,8000000,16000000,32000000};
 		
-		System.out.println("Average time for External Multi-way Merge-sort with M=" + M + " d=" + d + " Nelements="
-				+ N + " times=" + nn+ "(in SystemTime & UserTime);" 
-				+ result[0] + ";" + result[1] 
-				);
+		// N test
+		M = 250000;
+		d = 2;
+		B = 32768;
+		System.out.println("Increase the number of N using M=" + M + " d=" + d);
+		
+		for (int ii = 5; ii <= 11; ii++ ){
+			MergeSortTest mergeSort = new MergeSortTest(isGenerateFile, debug, M, d, Narray[ii], B, nn);
+			long result[] = mergeSort.run();
+			
+			System.out.println("Average time for External Multi-way Merge-sort with M=" + M + " d=" + d + " Nelements="
+					+ Narray[ii] + " times=" + nn + "(in SystemTime & UserTime);" 
+					+ result[0] + ";" + result[1] 
+			);
+		}
 	}
-
 }

@@ -52,7 +52,7 @@ public class ExternalMultiWayMergeSort {
 		int pass = 0;
 		
 		// first pass 
-		System.out.println("=========First Pass=========");
+//		System.out.println("=========First Pass=========");
 		while(!inputStream.end_of_stream()){
 			// split the big files into smaller chunks of size M
 			for(int i = 0; i < M && !inputStream.end_of_stream(); i++){
@@ -87,7 +87,7 @@ public class ExternalMultiWayMergeSort {
 		//group these chunks to be merged later
 		LinkedList<IOStream4_Input> inputToMerge = new LinkedList<IOStream4_Input>();
 		for (String s : sublist) {
-			System.out.println(s);
+//			System.out.println(s);
 			IOStream4_Input i = new IOStream4_Input(s, streamBufferSize);
 			inputToMerge.add(i);
 		}
@@ -104,7 +104,7 @@ public class ExternalMultiWayMergeSort {
 	}
 	
 	public void merge(LinkedList<? extends AbstractInputStream> inputStream, int pass) throws IOException{
-		System.out.println("=========Merging=========");
+//		System.out.println("=========Merging=========");
 		int counter = 0;
 		int subList = 0;
 		int inputSize = inputStream.size();
@@ -135,13 +135,13 @@ public class ExternalMultiWayMergeSort {
 			
 			String outputFile = outputPath + pass + "-"+ subList + "sorted";
 			
-			System.out.println("OutputFile: " + outputFile);
+//			System.out.println("OutputFile: " + outputFile);
 			merger = new MultiWayMerger(toMerge, new IOStream4_Output(outputFile, streamBufferSize, fileSize/4), outputFile, debug);
 			merger.merge();
 			
 			toMergeNext.add(new IOStream4_Input(outputFile, streamBufferSize));
 		}
-		System.out.println("Merging Pass " + pass + " Done! ToMergeNext : " + toMergeNext.size() + " file(s)");
+//		System.out.println("Merging Pass " + pass + " Done! ToMergeNext : " + toMergeNext.size() + " file(s)");
 		
 		if(subList > 1) {
 			merge(toMergeNext, pass+1);
