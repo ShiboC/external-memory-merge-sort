@@ -15,9 +15,9 @@ public class MergeSortTest {
 	private int nn;
 	
 	public MergeSortTest(boolean isGenerateFile, boolean debug, int M, int d, int N, int B, int nn) {
-		inputfilePath = "input";
-		inputfileName = "external_mway_merge_sort.data";
-		outputfilePath = "output";
+		inputfilePath = "C:\\Users\\pandu.wicaksono91\\Documents\\GitHub\\external-memory-merge-sort\\";
+		inputfileName = "testInput1.data";
+		outputfilePath = "testMerge1.data";
 		this.isGenerateFile = isGenerateFile;
 		this.debug = debug;
 		this.M = M;
@@ -39,14 +39,14 @@ public class MergeSortTest {
 		}
 		
 		for (int i = 0; i < nn; i++) {
-			System.out.println("***********RUN "+(i+1)+"***********");
+//			System.out.println("***********RUN "+(i+1)+"***********");
 			IOStream4_Input input = new IOStream4_Input(inputfilePath + "\\" + inputfileName, B);
 			ExternalMultiWayMergeSort mergeSort = new ExternalMultiWayMergeSort(M, d, input, outputfilePath, B, debug);
 			mergeSort.sort();
-			System.out.println("===========DONE===========");
+//			System.out.println("===========DONE===========");
 			long[] elapsedSystemTimeUserTime = mergeSort.getElapsedTime();
-			System.out.println("Elapsed Time (in SystemTime & UserTime):" 
-					+ elapsedSystemTimeUserTime[0] + ";" + elapsedSystemTimeUserTime[1]);
+//			System.out.println("Elapsed Time (in SystemTime & UserTime):" 
+//					+ elapsedSystemTimeUserTime[0] + ";" + elapsedSystemTimeUserTime[1]);
 			
 			average[0] += elapsedSystemTimeUserTime[0];
 			average[1] += elapsedSystemTimeUserTime[1];
