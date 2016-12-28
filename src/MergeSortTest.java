@@ -15,9 +15,9 @@ public class MergeSortTest {
 	private int nn;
 	
 	public MergeSortTest(boolean isGenerateFile, String fileName, boolean debug, int M, int d, int N, int B, int nn) {
-		inputfilePath = "input";
+		inputfilePath = "C:\\Users\\pandu.wicaksono91\\Documents\\GitHub\\external-memory-merge-sort\\Merge Input\\";
 		inputfileName = fileName;
-		outputfilePath = "output";
+		outputfilePath = "C:\\Users\\pandu.wicaksono91\\Documents\\GitHub\\external-memory-merge-sort\\Merge Output\\";
 		this.isGenerateFile = isGenerateFile;
 		this.debug = debug;
 		this.M = M;
