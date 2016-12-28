@@ -1,11 +1,14 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException
 	{
-		boolean isGenerateFile = false; //generate new file or use the existing one
+		boolean isGenerateFile = true; //generate new file or use the existing one
 		boolean debug = false; //print normal file with readable int
+		List<String> listResult = new ArrayList<String>();
 		
 		int M = 250000;
 		int d = 64;
@@ -25,13 +28,20 @@ public class Main {
 		System.out.println("Increase the number of N using M=" + M + " d=" + d);
 		
 		for (int ii = 5; ii <= 11; ii++ ){
-			MergeSortTest mergeSort = new MergeSortTest(isGenerateFile, debug, M, d, Narray[ii], B, nn);
+			String inputFileName = "input" + Narray[ii] + ".data";
+			MergeSortTest mergeSort = new MergeSortTest(isGenerateFile, inputFileName, debug, M, d, Narray[ii], B, nn);
 			long result[] = mergeSort.run();
 			
-			System.out.println("Average time for External Multi-way Merge-sort with M=" + M + " d=" + d + " Nelements="
+			String str = "Average time for External Multi-way Merge-sort with M=" + M + " d=" + d + " Nelements="
 					+ Narray[ii] + " times=" + nn + "(in SystemTime & UserTime);" 
-					+ result[0] + ";" + result[1] 
-			);
+					+ result[0] + ";" + result[1] ;
+			System.out.println(str);
+			listResult.add(str);
+		}
+		
+		System.out.println("============FINAL RESULT============");
+		for(String s : listResult) {
+			System.out.println(s);
 		}
 	}
 }

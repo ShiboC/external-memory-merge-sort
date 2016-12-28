@@ -14,10 +14,10 @@ public class MergeSortTest {
 	private int B;
 	private int nn;
 	
-	public MergeSortTest(boolean isGenerateFile, boolean debug, int M, int d, int N, int B, int nn) {
-		inputfilePath = "C:\\Users\\pandu.wicaksono91\\Documents\\GitHub\\external-memory-merge-sort\\";
-		inputfileName = "testInput1.data";
-		outputfilePath = "testMerge1.data";
+	public MergeSortTest(boolean isGenerateFile, String fileName, boolean debug, int M, int d, int N, int B, int nn) {
+		inputfilePath = "input";
+		inputfileName = fileName;
+		outputfilePath = "output";
 		this.isGenerateFile = isGenerateFile;
 		this.debug = debug;
 		this.M = M;
