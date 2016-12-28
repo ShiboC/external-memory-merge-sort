@@ -5,7 +5,6 @@ public class MergeSortTest {
 	private String inputfilePath;
 	private String inputfileName;
 	private String outputfilePath;
-	private boolean isGenerateFile;
 	private boolean debug;
 	
 	private int M;
@@ -14,11 +13,10 @@ public class MergeSortTest {
 	private int B;
 	private int nn;
 	
-	public MergeSortTest(boolean isGenerateFile, String fileName, boolean debug, int M, int d, int N, int B, int nn) {
-		inputfilePath = "C:\\Users\\pandu.wicaksono91\\Documents\\GitHub\\external-memory-merge-sort\\Merge Input\\";
+	public MergeSortTest(String inputFilePath, String outputFilePath, String fileName, boolean debug, int M, int d, int N, int B, int nn) {
+		inputfilePath = inputFilePath;
 		inputfileName = fileName;
-		outputfilePath = "C:\\Users\\pandu.wicaksono91\\Documents\\GitHub\\external-memory-merge-sort\\Merge Output\\";
-		this.isGenerateFile = isGenerateFile;
+		outputfilePath = outputFilePath;
 		this.debug = debug;
 		this.M = M;
 		this.d = d;
@@ -31,12 +29,7 @@ public class MergeSortTest {
 		
 		long average[] = new long[2];
 		average[0] = 0;
-		average[1] = 0;
-		
-		if(isGenerateFile) {
-			FileGenerator generator = new FileGenerator(N, inputfilePath, inputfileName);
-			generator.generateFile();
-		}
+		average[1] = 0;		
 		
 		for (int i = 0; i < nn; i++) {
 //			System.out.println("***********RUN "+(i+1)+"***********");

@@ -62,8 +62,8 @@ public class MultiWayMerger {
 	}
 	
 	private boolean hasMoreData(List<? extends AbstractInputStream> stream) throws IOException {
-		for (AbstractInputStream ioStream2_Input : stream) {
-			if(!ioStream2_Input.end_of_stream()) {
+		for (AbstractInputStream ioStream_Input : stream) {
+			if(!ioStream_Input.end_of_stream()) {
 				return true;
 			}
 		}
