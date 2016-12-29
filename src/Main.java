@@ -10,7 +10,7 @@ public class Main {
 		String inputFilePath = "input"; //"C:\\Users\\pandu.wicaksono91\\Documents\\GitHub\\external-memory-merge-sort\\Merge Input\\";
 		String outputFilePath = "output";//"C:\\Users\\pandu.wicaksono91\\Documents\\GitHub\\external-memory-merge-sort\\Merge Output\\";
 		
-		boolean isGenerateFile = false; //generate new file or use the existing one
+		boolean isGenerateFile = true; //generate new file or use the existing one
 		boolean debug = false; //print normal file with readable int
 		List<String> listResult = new ArrayList<String>();
 		
@@ -18,12 +18,9 @@ public class Main {
 		int d = 64;
 		int N = 32000000;
 		int B = 32768;
-		int nn = 10;
+		int nn = 3;
 		
-		int Narray[] = {15625,31250,62500,
-				125000,250000,500000,
-				1000000,2000000,
-				4000000,8000000,16000000,32000000};
+		int Narray[] = {3200};
 		
 		if(isGenerateFile) {
 			for (int nTest : Narray) {
@@ -116,41 +113,41 @@ public class Main {
 //		isGenerateFile = false;
 		
 		// d test B = 32,768
-		N = 2000000;
-		M = 250000;
+		N = 32000000;
+		M = 62500;
 		d = 2;
 		B = 32768;
 		System.out.println("Increase the number of d using N=" + N + " M=" + M + " b=" + B);
 		
-		for (int ii = 1; ii <= 3; ii++ ){
-			int currD = (int) Math.pow(d, ii);
-			String inputFileName = "input" + N + ".data";
-			
-			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M, currD , N, B, nn);
-			long result[] = mergeSort.run();
-			
-			String str = "Average time for External Multi-way Merge-sort with M=" + M + " d=" + currD + " Nelements="
-					+ N + " times=" + nn + "(in SystemTime & UserTime);" 
-					+ result[0] + ";" + result[1] ;
-			System.out.println(str);
-			listResult.add(str);
-		}
+//		for (int ii = 1; ii <= 3; ii++ ){
+//			int currD = (int) Math.pow(d, ii);
+//			String inputFileName = "input" + N + ".data";
+//			
+//			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M, currD , N, B, nn);
+//			long result[] = mergeSort.run();
+//			
+//			String str = "Average time for External Multi-way Merge-sort with M=" + M + " d=" + currD + " Nelements="
+//					+ N + " times=" + nn + "(in SystemTime & UserTime);" 
+//					+ result[0] + ";" + result[1] ;
+//			System.out.println(str);
+//			listResult.add(str);
+//		}
 		
 		// d test B = 8,388,608
 		N = 32000000;
-		M = 250000;
+		M = 4000000;
 		d = 2;
 		B = 8388608;
 		System.out.println("Increase the number of d using N=" + N + " M=" + M + " b=" + B);
 		
-		for (int ii = 1; ii <= 7; ii++ ){
-			int currD = (int) Math.pow(d, ii);
+		for (int ii = 1; ii <= 3; ii++ ){
+			int currD = 2;// (int) Math.pow(d, ii);
 			String inputFileName = "input" + N + ".data";
 			
-			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M, currD, N, B, nn);
+			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M * ii, currD, N, B, nn);
 			long result[] = mergeSort.run();
 			
-			String str = "Average time for External Multi-way Merge-sort with M=" + M + " d=" + currD + " Nelements="
+			String str = "Average time for External Multi-way Merge-sort with M=" + M * ii + " d=" + currD + " Nelements="
 					+ N + " times=" + nn + "(in SystemTime & UserTime);" 
 					+ result[0] + ";" + result[1] ;
 			System.out.println(str);
