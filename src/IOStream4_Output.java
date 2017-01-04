@@ -49,7 +49,8 @@ public class IOStream4_Output extends AbstractOutputStream {
 	}
 	
 	private boolean hasRemaining(){
-		return (bufferPosition < bufferSize);
+	  return this.mappedByteBuffer.hasRemaining();
+	//return (bufferPosition < bufferSize);
 	}
 	
 	private void resetBufferPosition(){
