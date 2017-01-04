@@ -33,7 +33,9 @@ public class MergeSortTest {
 		
 		for (int i = 0; i < nn; i++) {
 //			System.out.println("***********RUN "+(i+1)+"***********");
-			IOStream4_Input input = new IOStream4_Input(inputfilePath + "\\" + inputfileName, B);
+//			IOStream4_Input input = new IOStream4_Input(inputfilePath + "\\" + inputfileName, B);
+			IOStream2_Input input = new IOStream2_Input(inputfilePath + "\\" + inputfileName);
+
 			ExternalMultiWayMergeSort mergeSort = new ExternalMultiWayMergeSort(M, d, input, outputfilePath, B, debug);
 			mergeSort.sort();
 //			System.out.println("===========DONE===========");

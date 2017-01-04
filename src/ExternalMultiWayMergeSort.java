@@ -61,7 +61,9 @@ public class ExternalMultiWayMergeSort {
 			}
 
 			String outputFile = outputPath + pass + "-" + totalOutputStream + "sorted";
-			IOStream4_Output outputStream = new IOStream4_Output(outputFile, streamBufferSize, M);
+	//		IOStream4_Output outputStream = new IOStream4_Output(outputFile, streamBufferSize, M);
+			IOStream2_Output outputStream = new IOStream2_Output(outputFile);
+
 			outputStream.setTarget(outputFile);
 			outputStream.create();
 			
