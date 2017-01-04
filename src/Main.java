@@ -75,9 +75,6 @@ public class Main {
 //		isGenerateFile = false;
 //		
 //		// M test B = 32,768
-<<<<<<< HEAD
-		N = 2000000;
-=======
 //		N = 2000000;
 //		d = 2;
 //		B = 32768;
@@ -120,12 +117,10 @@ public class Main {
 		// d test B = 32,768
 		N = 32000000;
 		M = 62500;
->>>>>>> b54761a7d5620e36dafe62b2dfa580917de10e43
 		d = 2;
 		B = 32768;
 		System.out.println("Increase the number of M using N=" + N + " d=" + d + " b=" + B);
-		
-<<<<<<< HEAD
+
 		for (int ii = 0; ii <= 6; ii++ ){
 			String inputFileName = "input" + N + ".data";
 			M = Narray[ii];
@@ -136,9 +131,9 @@ public class Main {
 					+ N + " times=" + nn + "(in SystemTime & UserTime);" 
 					+ result[0] + ";" + result[1] ;
 			System.out.println(str);
-			listResult.add(str);
+//			listResult.add(str);
 		}
-=======
+
 //		for (int ii = 1; ii <= 3; ii++ ){
 //			int currD = (int) Math.pow(d, ii);
 //			String inputFileName = "input" + N + ".data";
@@ -152,49 +147,42 @@ public class Main {
 //			System.out.println(str);
 //			listResult.add(str);
 //		}
->>>>>>> b54761a7d5620e36dafe62b2dfa580917de10e43
-		
+
 		// M test B = 8,388,608
 		N = 32000000;
-<<<<<<< HEAD
-=======
 		M = 4000000;
->>>>>>> b54761a7d5620e36dafe62b2dfa580917de10e43
 		d = 2;
 		B = 8388608;
 		System.out.println("Increase the number of M using N=" + N + " d=" + d + " b=" + B);
 		
-<<<<<<< HEAD
-		for (int ii = 2; ii <= 9; ii++ ){
-			String inputFileName = "input" + N + ".data";
-			M = Narray[ii];
-			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M, d, N, B, nn);
-			long result[] = mergeSort.run();
-			
-			String str = "Average time for External Multi-way Merge-sort with M=" + M + " d=" + d + " Nelements="
-=======
-		for (int ii = 1; ii <= 3; ii++ ){
-			int currD = 2;// (int) Math.pow(d, ii);
-			String inputFileName = "input" + N + ".data";
-			
-			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M * ii, currD, N, B, nn);
-			long resultM[] = mergeSort.run();
-			
-			HeapSortTest heapSort = new HeapSortTest(inputFilePath, outputFilePath, inputFileName, debug, B, nn);
-			long resultH[] = heapSort.run();
-			
-			String strM = "Average time for External Multi-way Merge-sort with M=" + M * ii + " d=" + currD + " Nelements="
-					+ N + " times=" + nn + "(in SystemTime & UserTime);" 
-					+ resultM[0] + ";" + resultM[1] ;
-			System.out.println(strM);
-			listResultM.add(strM);
-			String strH = "Average time for Heap sort with Nelements="
->>>>>>> b54761a7d5620e36dafe62b2dfa580917de10e43
-					+ N + " times=" + nn + "(in SystemTime & UserTime);" 
-					+ resultH[0] + ";" + resultH[1] ;
-			System.out.println(strH);
-			listResultM.add(strH);
-		}
+//		for (int ii = 2; ii <= 9; ii++ ){
+//			String inputFileName = "input" + N + ".data";
+//			M = Narray[ii];
+//			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M, d, N, B, nn);
+//			long result[] = mergeSort.run();
+//			
+//			String str = "Average time for External Multi-way Merge-sort with M=" + M + " d=" + d + " Nelements="
+//		for (int ii = 1; ii <= 3; ii++ ){
+//			int currD = 2;// (int) Math.pow(d, ii);
+//			String inputFileName = "input" + N + ".data";
+//			
+//			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M * ii, currD, N, B, nn);
+//			long resultM[] = mergeSort.run();
+//			
+//			HeapSortTest heapSort = new HeapSortTest(inputFilePath, outputFilePath, inputFileName, debug, B, nn);
+//			long resultH[] = heapSort.run();
+//			
+//			String strM = "Average time for External Multi-way Merge-sort with M=" + M * ii + " d=" + currD + " Nelements="
+//					+ N + " times=" + nn + "(in SystemTime & UserTime);" 
+//					+ resultM[0] + ";" + resultM[1] ;
+//			System.out.println(strM);
+//			listResultM.add(strM);
+//			String strH = "Average time for Heap sort with Nelements="
+//					+ N + " times=" + nn + "(in SystemTime & UserTime);" 
+//					+ resultH[0] + ";" + resultH[1] ;
+//			System.out.println(strH);
+//			listResultM.add(strH);
+//		}
 		
 //		isGenerateFile = false;
 		
