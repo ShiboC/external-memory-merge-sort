@@ -25,7 +25,7 @@ public class MergeSortTest {
 		this.nn = nn > 0 ? nn : 1; 
 	}
 	
-	public long[] run() throws IOException{
+	public long[] run() throws IOException, InterruptedException{
 		
 		long average[] = new long[2];
 		average[0] = 0;
@@ -43,6 +43,7 @@ public class MergeSortTest {
 			
 			average[0] += elapsedSystemTimeUserTime[0];
 			average[1] += elapsedSystemTimeUserTime[1];
+			Thread.sleep(2500);
 		}
 		
 		average[0] /= nn;
