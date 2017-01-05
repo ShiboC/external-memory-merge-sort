@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 
 public class MergeSortTest {
@@ -32,6 +33,8 @@ public class MergeSortTest {
 		average[1] = 0;		
 		
 		for (int i = 0; i < nn; i++) {
+			System.gc();
+			deleteFolder(outputfilePath);
 //			System.out.println("***********RUN "+(i+1)+"***********");
 			IOStream4_Input input = new IOStream4_Input(inputfilePath + "\\" + inputfileName, B);
 //			IOStream2_Input input = new IOStream2_Input(inputfilePath + "\\" + inputfileName);
@@ -53,5 +56,26 @@ public class MergeSortTest {
 		
 		return average;
 		
+	}
+	
+	private boolean deleteFolder(String folderPath) {
+		File folder = new File(folderPath);
+		if (folder.exists()) {
+			//check if the file is a directory
+			if (folder.isDirectory()) {
+				if ((folder.list()).length > 0) {
+					for(String s:folder.list()){
+						//call deletion of file individually
+						boolean res = deleteFolder(folderPath+"\\"+s);
+					}
+				}
+			}
+			boolean result = folder.delete();
+			
+			return result;
+		} else {
+
+			return false;
+		}
 	}
 }
