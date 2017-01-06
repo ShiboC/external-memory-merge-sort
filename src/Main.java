@@ -134,7 +134,7 @@ public class Main {
 		B = 8388608;
 		System.out.println("Increase the number of M using N=" + N + " d=" + d + " b=" + B);
 
-		for (int ii = 8; ii <= 11; ii++ ){
+		for (int ii = 0; ii <= 7; ii++ ){
 			String inputFileName = "input" + N + ".data";
 			M = Narray[ii];
 			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M, d, N, B, nn);
