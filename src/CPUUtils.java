@@ -4,23 +4,23 @@ import java.lang.management.ThreadMXBean;
 public class CPUUtils {
     public static final ThreadMXBean bean = ManagementFactory.getThreadMXBean( );
 	
-	/** Get CPU time in nanoseconds. */
+	// Get CPU time in nanoseconds.
     public static long getCpuTime( ) {
-//        ThreadMXBean bean = ManagementFactory.getThreadMXBean( );
+//      ThreadMXBean bean = ManagementFactory.getThreadMXBean( );
         return bean.isCurrentThreadCpuTimeSupported( ) ?
             bean.getCurrentThreadCpuTime( ) : 0L;
     }
 
-    /** Get user time in nanoseconds. */
+    // Get user time in nanoseconds. 
     public static long getUserTime( ) {
-//        ThreadMXBean bean = ManagementFactory.getThreadMXBean( );
+//      ThreadMXBean bean = ManagementFactory.getThreadMXBean( );
         return bean.isCurrentThreadCpuTimeSupported( ) ?
             bean.getCurrentThreadUserTime( ) : 0L;
     }
 
-    /** Get system time in nanoseconds. */
+    // Get system time in nanoseconds. 
     public static long getSystemTime( ) {
-//        ThreadMXBean bean = ManagementFactory.getThreadMXBean( );
+//      ThreadMXBean bean = ManagementFactory.getThreadMXBean( );
         return bean.isCurrentThreadCpuTimeSupported( ) ?
             (bean.getCurrentThreadCpuTime( ) - bean.getCurrentThreadUserTime( )) : 0L;
     }

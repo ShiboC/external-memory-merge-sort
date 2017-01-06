@@ -25,14 +25,11 @@ public class HeapSortTest {
 		average[1] = 0;		
 		
 		for (int i = 0; i < nn; i++) {
-//			System.out.println("***********RUN "+(i+1)+"***********");
 			IOStream4_Input input = new IOStream4_Input(inputfilePath + "\\" + inputfileName, B);
 			HeapSort heapSort = new HeapSort(input, outputfilePath, B, debug);
 			heapSort.sort();
-//			System.out.println("===========DONE===========");
+
 			long[] elapsedSystemTimeUserTime = heapSort.getElapsedTime();
-//			System.out.println("Elapsed Time (in SystemTime & UserTime):" 
-//					+ elapsedSystemTimeUserTime[0] + ";" + elapsedSystemTimeUserTime[1]);
 			
 			average[0] += elapsedSystemTimeUserTime[0];
 			average[1] += elapsedSystemTimeUserTime[1];

@@ -18,12 +18,6 @@ public class HeapSort {
 		this.input = input;
 	}
 
-	public PriorityQueue<Integer> sort1() {
-		PriorityQueue<Integer> sorted = new PriorityQueue<>(input);
-
-		return (PriorityQueue<Integer>) sorted;
-	}
-
 	public long[] getElapsedTime() {
 		return elapsedSystemTimeUserTime;
 	}
@@ -45,21 +39,22 @@ public class HeapSort {
 
 		PriorityQueue<Integer> sorted = new PriorityQueue<Integer>();
 		inputStream.open();
-		int N = 0;// number of integers in the file
+		
+		int N = 0; // Number of integers in the file
 		while (!inputStream.end_of_stream()) {
 			sorted.add(inputStream.read_next());
 			N++;
 		}
+		
 		String outputFile = outputPath + "-" + "heapsorted";
 		IOStream4_Output outputStream = new IOStream4_Output(outputFile, streamBufferSize, N);
 		outputStream.setTarget(outputFile);
 		outputStream.create();
 
 		PrintWriter writer = null;
-		if (debug)
-			writer = new PrintWriter(outputFile + ".normal", "UTF-8");
+		if (debug) writer = new PrintWriter(outputFile + ".normal", "UTF-8");
 
-		// write priority queue into file
+		// Write priority queue into file
 		while (!sorted.isEmpty()) {
 			int x = sorted.poll();
 			outputStream.write((int) x);
@@ -67,29 +62,11 @@ public class HeapSort {
 				writer.println(x);
 		}
 		outputStream.close();
-		if (debug)
-			writer.close();
 		inputStream.close();
+		
+		if (debug) writer.close();
+		
 		this.elapsedSystemTimeUserTime[1] = CPUUtils.getUserTime() - start[1];
 		this.elapsedSystemTimeUserTime[0] = CPUUtils.getSystemTime() - start[0];
-	}
-
-	public static void main(String[] args) throws IOException {
-		IOStream2_Input inputStream = new IOStream2_Input("input.data");
-		inputStream.open();
-		List<Integer> a = new ArrayList<Integer>();
-		while (!inputStream.end_of_stream()) {
-			a.add(inputStream.read_next());
-		}
-
-		inputStream.close();
-
-		HeapSort b = new HeapSort(a);
-		PriorityQueue<Integer> result = b.sort1();
-
-		while (!result.isEmpty()) {
-			System.out.println(result.remove());
-		}
-
 	}
 }
