@@ -51,7 +51,7 @@ public class ExternalMultiWayMergeSort {
 		
 		int pass = 0;
 		
-		// first pass 
+		// First pass 
 		while(!inputStream.end_of_stream()){
 			
 			// Split the big files into smaller chunks of size M
