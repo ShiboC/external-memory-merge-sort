@@ -23,7 +23,7 @@ public class Main {
 		int d = 64;
 		int N = 32000000;
 		int B = 32768;
-		int nn = 3;
+		int nn = 10;
 		
 		int Narray[] = {15625,31250,62500,
 				125000,250000,500000,
@@ -92,6 +92,24 @@ public class Main {
 ////			listResult.add(str);
 //		}
 		
+//		N = 2000000;
+//		d = 128;
+//		B = 8388608;
+//		System.out.println("Increase the number of M using N=" + N + " d=" + d + " b=" + B);
+//		
+//		for (int ii = 0; ii <= 8; ii++ ){
+//			String inputFileName = "input" + N + ".data";
+//			M = Narray[ii];
+//			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M, d, N, B, nn);
+//			long result[] = mergeSort.run();
+//			
+//			String str = "Average time for External Multi-way Merge-sort with M=" + M + " d=" + d + " Nelements="
+//					+ N + " times=" + nn + "(in SystemTime & UserTime);" 
+//					+ result[0] + ";" + result[1] ;
+//			System.out.println(str);
+////			listResult.add(str);
+//		}
+		
 		// M test B = 8,388,608 Large Input
 //		N = 32000000;
 //		d = 2;
@@ -110,6 +128,24 @@ public class Main {
 //			System.out.println(str);
 ////			listResult.add(str);
 //		}
+		
+		N = 32000000;
+		d = 128;
+		B = 8388608;
+		System.out.println("Increase the number of M using N=" + N + " d=" + d + " b=" + B);
+
+		for (int ii = 8; ii <= 11; ii++ ){
+			String inputFileName = "input" + N + ".data";
+			M = Narray[ii];
+			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M, d, N, B, nn);
+			long result[] = mergeSort.run();
+			
+			String str = "Average time for External Multi-way Merge-sort with M=" + M + " d=" + d + " Nelements="
+					+ N + " times=" + nn + "(in SystemTime & UserTime);" 
+					+ result[0] + ";" + result[1] ;
+			System.out.println(str);
+//			listResult.add(str);
+		}
 				
 		// d test B = 8,388,608 Small Input
 //		N = 2000000;
@@ -187,35 +223,35 @@ public class Main {
 //		}
 		
 		// N test B = 8,388,608
-		M = 32000000;
-		d = 2;
-		B = 8388608;
-		System.out.println("Increase the number of N using M=" + M + " d=" + d + " b=" + B);
-		
-		for (int ii = 8; ii <= 11; ii++ ){
-			String inputFileName = "input" + Narray[ii] + ".data";
-			
-			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M, d, Narray[ii], B, nn);
-			long resultM[] = mergeSort.run();
-			
-			String strM = "Average time for External Multi-way Merge-sort with M=" + M + " d=" + d + " Nelements="
-					+ Narray[ii] + " times=" + nn + "(in SystemTime & UserTime);" 
-					+ resultM[0] + ";" + resultM[1] ;
-			System.out.println(strM);
-//			listResult.add(strM);
-		}	
+//		M = 32000000;
+//		d = 2;
+//		B = 8388608;
+//		System.out.println("Increase the number of N using M=" + M + " d=" + d + " b=" + B);
 //		
-		for (int ii = 8; ii <= 11; ii++ ){
-			String inputFileName = "input" + Narray[ii] + ".data";
-			
-			HeapSortTest heapSort = new HeapSortTest(inputFilePath, outputFilePath, inputFileName, debug, B, nn);
-			long resultH[] = heapSort.run();
-			
-			String strH = "Average time for Heap sort with Nelements="
-					+ Narray[ii] + " times=" + nn + "(in SystemTime & UserTime);" 
-					+ resultH[0] + ";" + resultH[1] ;
-			System.out.println(strH);
-//			listResultM.add(strH);
-		}	
+//		for (int ii = 8; ii <= 11; ii++ ){
+//			String inputFileName = "input" + Narray[ii] + ".data";
+//			
+//			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M, d, Narray[ii], B, nn);
+//			long resultM[] = mergeSort.run();
+//			
+//			String strM = "Average time for External Multi-way Merge-sort with M=" + M + " d=" + d + " Nelements="
+//					+ Narray[ii] + " times=" + nn + "(in SystemTime & UserTime);" 
+//					+ resultM[0] + ";" + resultM[1] ;
+//			System.out.println(strM);
+////			listResult.add(strM);
+//		}	
+//		
+//		for (int ii = 8; ii <= 11; ii++ ){
+//			String inputFileName = "input" + Narray[ii] + ".data";
+//			
+//			HeapSortTest heapSort = new HeapSortTest(inputFilePath, outputFilePath, inputFileName, debug, B, nn);
+//			long resultH[] = heapSort.run();
+//			
+//			String strH = "Average time for Heap sort with Nelements="
+//					+ Narray[ii] + " times=" + nn + "(in SystemTime & UserTime);" 
+//					+ resultH[0] + ";" + resultH[1] ;
+//			System.out.println(strH);
+////			listResultM.add(strH);
+//		}	
 	}
 }
