@@ -35,6 +35,7 @@ public class MergeSortTest {
 		for (int i = 0; i < nn; i++) {
 			System.gc();
 			deleteFolder(outputfilePath);
+			Thread.sleep(500);
 //			System.out.println("***********RUN "+(i+1)+"***********");
 			IOStream4_Input input = new IOStream4_Input(inputfilePath + "\\" + inputfileName, B);
 //			IOStream2_Input input = new IOStream2_Input(inputfilePath + "\\" + inputfileName);
@@ -48,7 +49,7 @@ public class MergeSortTest {
 			
 			average[0] += elapsedSystemTimeUserTime[0];
 			average[1] += elapsedSystemTimeUserTime[1];
-			Thread.sleep(2500);
+			Thread.sleep(500);
 		}
 		
 		average[0] /= nn;
