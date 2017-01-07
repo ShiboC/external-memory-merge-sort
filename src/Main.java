@@ -16,7 +16,7 @@ public class Main {
 		// Output\\";//"C:\\Users\\pandu.wicaksono91\\Documents\\GitHub\\external-memory-merge-sort\\Merge
 		// Output\\";
 
-		boolean isGenerateFile = false; // generate new file or use the existing
+		boolean isGenerateFile = true; // generate new file or use the existing
 										// one
 		boolean debug = false; // print normal file with readable int
 		List<String> listResult = new ArrayList<String>();// result list
@@ -35,8 +35,9 @@ public class Main {
 		int Narray[] = { 15625, 31250, 62500, 125000, 250000, 500000, 1000000, 2000000, 4000000, 8000000, 16000000,
 				32000000 };
 
-		// generate the files for testing for the first time the experiment is done
-		// to generate, set the isGenerate variable above into true
+		// generate the files for testing for the first time the experiment is performed
+		// to generate, set the isGenerateFile variable above into true
+		// set isGenerateFile to false to skip generating files
 		if (isGenerateFile) {
 			for (int nTest : Narray) {
 				FileGenerator generator = new FileGenerator(nTest, inputFilePath, "input" + nTest + ".data");
@@ -109,7 +110,7 @@ public class Main {
 		d = 2;
 		B = 8388608;
 		System.out.println("Increase the number of M using N=" + N + " d=" + d + " b=" + B);
-		for (int ii = 0; ii <= 8; ii++) {
+		for (int ii = 0; ii <= 11; ii++) {
 			String inputFileName = "input" + N + ".data";
 			M = Narray[ii];
 			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M, d, N, B,
@@ -227,11 +228,13 @@ public class Main {
 		// 3.2.5.1 Finding the Best Combination of M and d using small input
 		// N = 2,000,000; B = 8,388,608; d=2
 		// increase the number of M
-		N = 2000000;
+		// reuse the result of M testing
+		
+		N = 32000000;
 		d = 2;
 		B = 8388608;
 		System.out.println("Increase the number of M using N=" + N + " d=" + d + " b=" + B);
-		for (int ii = 0; ii <= 7; ii++) {
+		for (int ii = 9; ii <= 11; ii++) {
 			String inputFileName = "input" + N + ".data";
 			M = Narray[ii];
 			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M, d, N, B,
@@ -243,7 +246,8 @@ public class Main {
 			System.out.println(str);
 			listResult.add(str);
 		}
-		// N = 2,000,000; B = 8,388,608; d=2
+		
+		// N = 2,000,000; B = 8,388,608; d=128
 		// increase the number of M
 		N = 2000000;
 		d = 128;
@@ -265,22 +269,8 @@ public class Main {
 		// 3.2.5.2 Finding the Best Combination of M and d using large input
 		// N = 32,000,000; B = 8,388,608; d=2
 		// increase the number of M
-		N = 32000000;
-		d = 2;
-		B = 8388608;
-		System.out.println("Increase the number of M using N=" + N + " d=" + d + " b=" + B);
-		for (int ii = 0; ii <= 11; ii++) {
-			String inputFileName = "input" + N + ".data";
-			M = Narray[ii];
-			MergeSortTest mergeSort = new MergeSortTest(inputFilePath, outputFilePath, inputFileName, debug, M, d, N, B,
-					nn);
-			long result[] = mergeSort.run();
-
-			String str = "Average time for External Multi-way Merge-sort with M=" + M + " d=" + d + " Nelements=" + N
-					+ " times=" + nn + "(in SystemTime & UserTime);" + result[0] + ";" + result[1];
-			System.out.println(str);
-			listResult.add(str);
-		}
+		// reuse the result from M testing
+		
 		// N = 32,000,000; B = 8,388,608; d=128
 		// increase the number of M
 		N = 32000000;
