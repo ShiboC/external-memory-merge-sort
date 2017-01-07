@@ -271,10 +271,10 @@ public class Main {
 		// increase the number of M
 		// reuse the result from M testing
 		
-		// N = 32,000,000; B = 8,388,608; d=128
+		// N = 32,000,000; B = 8,388,608; d=2,048
 		// increase the number of M
 		N = 32000000;
-		d = 128;
+		d = 2048;
 		B = 8388608;
 		System.out.println("Increase the number of M using N=" + N + " d=" + d + " b=" + B);
 		for (int ii = 0; ii <= 11; ii++) {
