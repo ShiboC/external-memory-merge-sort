@@ -104,21 +104,18 @@ public class ExternalMultiWayMergeSort {
 		this.elapsedSystemTimeUserTime[0] = CPUUtils.getSystemTime() - start[0];
 	}
 	
-	public void merge(LinkedList<? extends AbstractInputStream> inputStream, int pass) throws IOException{
-		
-		int counter = 0;
+	public void merge(LinkedList<IOStream4_Input> inputStream, int pass) throws IOException{
 		int subList = 0;
-		int inputSize = inputStream.size();
 		MultiWayMerger merger = null;
 		
 		List<IOStream4_Input> toMerge = null;
-		LinkedList<IOStream4_Input> toMergeNext = new LinkedList<IOStream4_Input>();
 		
-		for(AbstractInputStream i : inputStream) {
+		for(IOStream4_Input i : inputStream) {
 			i.open();
 		}
 		
-		while(counter < inputSize) {
+		while(inputStream.size() > 1) {
+			
 			toMerge = new ArrayList<IOStream4_Input>();
 			
 			long fileSize = 0;
@@ -130,22 +127,20 @@ public class ExternalMultiWayMergeSort {
 					
 					fileSize+= input.getFileSize();
 					toMerge.add(input);
-					counter++;
 				}
 			}
 			
 			subList++;
 			
-			String outputFile = outputPath + pass + "-"+ subList + "sorted";
+			String outputFile = outputPath + subList + "-sorted";
 			
 			merger = new MultiWayMerger(toMerge, new IOStream4_Output(outputFile, streamBufferSize, fileSize/4), outputFile, debug);
 			merger.merge();
 			
-			toMergeNext.add(new IOStream4_Input(outputFile, streamBufferSize));
+			IOStream4_Input in = new IOStream4_Input(outputFile, streamBufferSize);
+			in.open();
+			inputStream.add(in);
+			
 		}
-		
-		if(subList > 1) {
-			merge(toMergeNext, pass+1);
-		} 
 	}
 }
