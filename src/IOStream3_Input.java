@@ -80,6 +80,7 @@ public class IOStream3_Input extends AbstractInputStream {
 		ioStream3Write.create();
 		for (int j = 0; j < N; j++) {
 			int temp = ioStream3Read.read_next();
+			System.out.println(temp);
 			ioStream3Write.write(temp);
 		}
 		ioStream3Read.close();
