@@ -4,226 +4,179 @@ public class StreamTest {
 
 	private static String pathInput = "C:\\Users\\pandu.wicaksono91\\Documents\\GitHub\\external-memory-merge-sort\\testInput";
 	private static String pathOutput = "C:\\Users\\pandu.wicaksono91\\Documents\\GitHub\\external-memory-merge-sort\\testOutput";
-	
+
 	public StreamTest() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public static void main(String[] args) throws Exception {
-		
+
 		int N = 1; // 10000
 		int b = 1; // 10000
-		int Narray[] = {15625,31250,62500,
-				125000,250000,500000,
-				1000000,2000000,
-				4000000,8000000,16000000,32000000};
-		
-		// Stream 1
+		int Narray[] = { 15625, 31250, 62500, 125000, 250000, 500000, 1000000, 2000000, 4000000, 8000000, 16000000,
+				32000000 };
+
+		// 2.2.1.1 for small input N = 500,000
+		// only applicable for stream 3 and 4
+		// increase the number of B
+		N = Narray[11]; // 500,000
+		System.out.println("Stream 3. Increase the number of B using 1 stream N = " + N);
+		b = 64;
+		for (int i = 0; i < 20; i++) {
+			averageTest3(1, N, b, 10);
+			b *= 2;
+		}
+
+		N = Narray[11]; // 500,000
+		System.out.println("Stream 4. Increase the number of B using 1 stream N = " + N);
+		b = 64; // 10000
+		for (int i = 0; i < 20; i++) {
+			averageTest4(1, N, b, 10);
+			b *= 2;
+		}
+
+		// 2.2.1.2 for large input N = 32,000,000
+		// only applicable for stream 3 and 4
+		// increase the number of B
+		N = Narray[11]; // 32,000,000
+		System.out.println("Stream 3. Increase the number of B using 1 stream N = " + N);
+		b = 512;
+		for (int i = 0; i < 17; i++) {
+			averageTest3(1, N, b, 10);
+			b *= 2;
+		}
+
+		N = Narray[11]; // 32,000,000
+		System.out.println("Stream 4. Increase the number of B using 1 stream N = " + N);
+		b = 512; // 10000
+		for (int i = 0; i < 17; i++) {
+			averageTest4(1, N, b, 10);
+			b *= 2;
+		}
+
+		// 2.2.2.1 for small input
+		// applicable for stream 1,2,3,4
+		// increase the number of N
 		System.out.println("Stream 1. Increase the number of N using 1 stream");
-//		for (int i = 0; i < 6; i++) {
-//			averageTest1(1, Narray[i], 10);
-//		}
-		for (int i = 6; i <= 11; i++) {
-			averageTest1(1, Narray[i], 1);
+		for (int i = 0; i < 6; i++) {
+			averageTest1(1, Narray[i], 10);
 		}
-		
-//		N = Narray[5]; // 500,000
-//		System.out.println("Stream 1. Increase the number of stream using N = " + N);
-//		for (int i = 1; i <= 1; i++) {
-//			averageTest1(i, N, 10);
-//		}
-//		for (int i = 10; i <= 30; i+=10) {
-//			averageTest1(i, N, 10);
-//		}
-		
-		// Stream 2
 		System.out.println("Stream 2. Increase the number of N using 1 stream");
-//		for (int i = 0; i < 6; i++) {
-//			averageTest2(1, Narray[i], 10);
-//		}
-		for (int i = 6; i <= 11; i++) {
-			averageTest2(1, Narray[i], 1);
+		for (int i = 0; i < 6; i++) {
+			averageTest2(1, Narray[i], 10);
 		}
-		
-//		N = Narray[5]; // 500,000
-//		System.out.println("Stream 2. Increase the number of stream using N = " + N);
-//		for (int i = 1; i <= 1; i++) {
-//			averageTest2(i, N, 10);
-//		}
-//		for (int i = 10; i <= 30; i+=10) {
-//			averageTest2(i, N, 10);
-//		}
-		
-		// Stream 3
 		System.out.println("Stream 3. Increase the number of N using 1 stream 1 B");
-//		for (int i = 0; i < 6; i++) {
-//			averageTest3(1, Narray[i], 1, 10);
-//		}
-		for (int i = 6; i <= 11; i++) {
-			averageTest3(1, Narray[i], 1, 1);
+		for (int i = 0; i < 6; i++) {
+			averageTest3(1, Narray[i], 1, 10);
+		}
+		System.out.println("Stream 4. Increase the number of N using 1 stream 1 B");
+		for (int i = 0; i < 6; i++) {
+			averageTest4(1, Narray[i], 1, 10);
 		}
 		b = 2048;
 		System.out.println("Stream 3. Increase the number of N using 1 stream B=" + b);
-		b = 2048;
-//		for (int i = 0; i < 6; i++) {
-//			averageTest3(1, Narray[i], b, 10);
-//		}
-		for (int i = 6; i <= 11; i++) {
-			averageTest3(1, Narray[i], b, 1);
+		for (int i = 0; i < 6; i++) {
+			averageTest3(1, Narray[i], b, 10);
+		}
+		b = 32768;
+		System.out.println("Stream 4. Increase the number of N using 1 stream B=" + b);
+		for (int i = 0; i < 6; i++) {
+			averageTest4(1, Narray[i], b, 10);
 		}
 		
-//		N = Narray[11]; // 500,000
-//		System.out.println("Stream 3. Increase the number of B using 1 stream N = " + N);
-//		b = 64;
-//		for (int i = 0; i < 20; i++) {
-//			averageTest3(1, N, b, 10);
-//			b *= 2;
-//		}
-
-//		N = Narray[5]; // 500,000
-//		b = 2048; // optimal value of B = 2,048
-//		System.out.println(
-//				"Stream 3. Increase the number of stream using N = "
-//				+ N
-//				+ " and B = "
-//				+ b);
-//		for (int i = 1; i <= 1; i++) {
-//			averageTest3(i, N, b, 10);
-//		}
-//		for (int i = 10; i <= 30; i+=10) {
-//			averageTest3(i, N, b, 10);
-//		}
-		
-		// Stream 4
-//		System.out.println("Stream 4. Increase the number of N using 1 stream 1 B");
-//		for (int i = 0; i < 6; i++) {
-//			averageTest4(1, Narray[i], 1, 10);
-//		}
+		// 2.2.2.2 for large input
+		// applicable for stream 1,2,3,4
+		// increase the number of N
+		System.out.println("Stream 1. Increase the number of N using 1 stream");
+		for (int i = 6; i <= 11; i++) {
+			averageTest1(1, Narray[i], 1);
+		}
+		System.out.println("Stream 2. Increase the number of N using 1 stream");
+		for (int i = 6; i <= 11; i++) {
+			averageTest2(1, Narray[i], 1);
+		}
+		System.out.println("Stream 3. Increase the number of N using 1 stream 1 B");
+		for (int i = 6; i <= 11; i++) {
+			averageTest3(1, Narray[i], 1, 1);
+		}
+		System.out.println("Stream 4. Increase the number of N using 1 stream 1 B");
 		for (int i = 6; i <= 11; i++) {
 			averageTest4(1, Narray[i], 1, 1);
 		}
-		
-	
-		System.out.println("Stream 4. Increase the number of N using 1 stream B=" + b);
-		b = 32768;
-//		for (int i = 0; i < 6; i++) {
-//			averageTest4(1, Narray[i], b, 10);
-//		}
+		b = 2048;
+		System.out.println("Stream 3. Increase the number of N using 1 stream B=" + b);
+		for (int i = 6; i <= 11; i++) {
+			averageTest3(1, Narray[i], b, 1);
+		}
 		b = 8388608;
+		System.out.println("Stream 4. Increase the number of N using 1 stream B=" + b);
 		for (int i = 6; i <= 11; i++) {
 			averageTest4(1, Narray[i], b, 1);
 		}
-			
-//		N = Narray[11]; // 500,000
-//		System.out.println("Stream 4. Increase the number of B using 1 stream N = " + N);
-//		b = 64; // 10000
-//		for (int i = 0; i < 20; i++) {
-//			averageTest4(1, N, b, 10);
-//			b *= 2;
-//		}
-		
-//		N = Narray[5]; // 500,000
-//		b = 32768; // optimal value of B = 32768
-//		System.out.println(
-//				"Stream 4. Increase the number of stream using N = "
-//				+ N
-//				+ " and B = "
-//				+ b);
-//		for (int i = 1; i <= 1; i++) {
-//			averageTest4(i, N, b, 10);
-//		}
-//		for (int i = 10; i <= 30; i+=10) {
-//			averageTest4(i, N, b, 10);
-//		}
-		
-		// for large input
-		// only applicable for stream 3 and 4
-		// increase the number of B
-//		N = Narray[11]; // 32,000,000
-//		System.out.println("Stream 3. Increase the number of B using 1 stream N = " + N);
-//		b = 512;
-//		for (int i = 0; i < 17; i++) {
-//			averageTest3(1, N, b, 10);
-//			b *= 2;
-//		}
-		
-//		N = Narray[11]; // 32,000,000
-//		System.out.println("Stream 4. Increase the number of B using 1 stream N = " + N);
-//		b = 512; // 10000
-//		for (int i = 0; i < 17; i++) {
-//			averageTest4(1, N, b, 10);
-//			b *= 2;
-//		}
-//		
-		// increase the number of k
-//		N = Narray[11]; // 32,000,000
-//		b = 2048;
-//		System.out.println(
-//				"Stream 3. Increase the number of stream using N = "
-//				+ N
-//				+ " and B = "
-//				+ b);
-//		for (int i = 1; i <= 1; i+=10) {
-//			averageTest3(i, N, b, 10);
-//		}
-//		
-//		N = Narray[11]; // 32,000,000
-//		b = 2048;
-//		System.out.println(
-//				"Stream 3. Increase the number of stream using N = "
-//				+ N
-//				+ " and B = "
-//				+ b);
-//		for (int i = 10; i <= 30; i+=10) {
-//			averageTest3(i, N, b, 10);
-//		}
-		
-//		N = Narray[11]; // 32,000,000
-//		b = 32768; // optimal value of B = 8192
-//		System.out.println(
-//				"Stream 4. Increase the number of stream using N = "
-//				+ N
-//				+ " and B = "
-//				+ b);
-//		for (int i = 1; i <= 1; i+=10) {
-//			averageTest4(i, N, b, 10);
-//		}
-		
-//		N = Narray[11]; // 32,000,000
-//		b = 8388608; // optimal value of B = 8192
-//		System.out.println(
-//				"Stream 4. Increase the number of stream using N = "
-//				+ N
-//				+ " and B = "
-//				+ b);
-//		for (int i = 10; i <= 30; i+=10) {
-//			averageTest4(i, N, b, 10);
-//		}
-		
-//		// increasing K while decreasing N
-//		N = Narray[9]; // 2,000,000
-//		b = 32768; // optimal value of B = 8192
-//		System.out.println(
-//				"Stream 4. Increase the number of stream using N = "
-//				+ N
-//				+ " and B = "
-//				+ b);
-//		for (int i = 1; i <= 1; i++) {
-//			averageTest4(i, (N/i), b, 10);
-//		}
-//		
-//		N = Narray[9]; // 2,000,000
-//		b = 32768; // optimal value of B = 8192
-//		System.out.println(
-//				"Stream 4. Increase the number of stream using N = "
-//				+ N
-//				+ " and B = "
-//				+ b);
-//		for (int i = 5; i <= 15; i+=5) {
-//			averageTest4(i, (N/i), b, 10);
-//		}
-		
-		
+
+		// 2.2.3.1 for small input N = 500,000
+		// applicable for stream 1,2,3,4
+		// increase the number of K
+		N = Narray[5]; // 500,000
+		System.out.println("Stream 1. Increase the number of stream using N = " + N);
+		for (int i = 1; i <= 1; i++) {
+			averageTest1(i, N, 10);
+		}
+		for (int i = 10; i <= 30; i += 10) {
+			averageTest1(i, N, 10);
+		}
+		System.out.println("Stream 2. Increase the number of stream using N = " + N);
+		for (int i = 1; i <= 1; i++) {
+			averageTest2(i, N, 10);
+		}
+		for (int i = 10; i <= 30; i += 10) {
+			averageTest2(i, N, 10);
+		}
+		b = 2048; // optimal value of B = 2,048
+		System.out.println("Stream 3. Increase the number of stream using N = " + N + " and B = " + b);
+		for (int i = 1; i <= 1; i++) {
+			averageTest3(i, N, b, 10);
+		}
+		for (int i = 10; i <= 30; i += 10) {
+			averageTest3(i, N, b, 10);
+		}
+		b = 32768; // optimal value of B = 32768
+		System.out.println("Stream 4. Increase the number of stream using N = " + N + " and B = " + b);
+		for (int i = 1; i <= 1; i++) {
+			averageTest4(i, N, b, 10);
+		}
+		for (int i = 10; i <= 30; i += 10) {
+			averageTest4(i, N, b, 10);
+		}
+
+		// 2.2.3.2 for large input N = 32,000,000
+		// applicable for stream 2,3,4
+		// increase the number of K
+		N = Narray[11]; // 32,000,000
+		System.out.println("Stream 2. Increase the number of stream using N = " + N);
+		for (int i = 1; i <= 1; i++) {
+			averageTest2(i, N, 10);
+		}
+		for (int i = 10; i <= 30; i += 10) {
+			averageTest2(i, N, 10);
+		}
+		b = 2048; // optimal value of B = 2,048
+		System.out.println("Stream 3. Increase the number of stream using N = " + N + " and B = " + b);
+		for (int i = 1; i <= 1; i += 10) {
+			averageTest3(i, N, b, 10);
+		}
+		for (int i = 10; i <= 30; i += 10) {
+			averageTest3(i, N, b, 10);
+		}
+		b = 8388608; // optimal value of B = 8,388,608
+		System.out.println("Stream 4. Increase the number of stream using N = " + N + " and B = " + b);
+		for (int i = 1; i <= 1; i += 10) {
+			averageTest4(i, N, b, 10);
+		}
+		for (int i = 10; i <= 30; i += 10) {
+			averageTest4(i, N, b, 10);
+		}
+
 	}
 
 	// run "one read&write"test n times to get the average cost
@@ -238,13 +191,13 @@ public class StreamTest {
 	 * @return the average time of opening k streams to read and write N
 	 *         elements with implementation method1.
 	 * @throws IOException
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
 	public static long[] averageTest1(int k, int N, int nn) throws IOException, InterruptedException {
 		long average[] = new long[2];
 		average[0] = 0;
 		average[1] = 0;
-		
+
 		for (int i = 0; i < nn; i++) {
 			long result[] = testStream1(k, N);
 			average[0] += result[0];
@@ -253,10 +206,8 @@ public class StreamTest {
 		}
 		average[0] /= nn;
 		average[1] /= nn;
-		System.out.println("Average time for Stream1 with kstream=" + k + 
-				" Nelements="+ N + " times=" + nn + "(in SystemTime & UserTime);"
-				+ average[0] + ";" + average[1] 
-				);
+		System.out.println("Average time for Stream1 with kstream=" + k + " Nelements=" + N + " times=" + nn
+				+ "(in SystemTime & UserTime);" + average[0] + ";" + average[1]);
 		return average;
 	}
 
@@ -264,7 +215,7 @@ public class StreamTest {
 		long average[] = new long[2];
 		average[0] = 0;
 		average[1] = 0;
-		
+
 		for (int i = 0; i < nn; i++) {
 			long result[] = testStream2(k, N);
 			average[0] += result[0];
@@ -273,10 +224,8 @@ public class StreamTest {
 		}
 		average[0] /= nn;
 		average[1] /= nn;
-		System.out.println("Average time for Stream2 with kstream=" + k + " Nelements="
-				+ N + " times=" + nn+ "(in SystemTime & UserTime);" 
-				+ average[0] + ";" + average[1] 
-				);
+		System.out.println("Average time for Stream2 with kstream=" + k + " Nelements=" + N + " times=" + nn
+				+ "(in SystemTime & UserTime);" + average[0] + ";" + average[1]);
 		return average;
 	}
 
@@ -292,10 +241,8 @@ public class StreamTest {
 		}
 		average[0] /= nn;
 		average[1] /= nn;
-		System.out.println("Average time for Stream3 with kstream=" 
-				+ k + " Nelements=" + N + " buffer=" + b + " times=" + nn 
-				+ "(in SystemTime & UserTime);" 
-				+ average[0] + ";" + average[1] );
+		System.out.println("Average time for Stream3 with kstream=" + k + " Nelements=" + N + " buffer=" + b + " times="
+				+ nn + "(in SystemTime & UserTime);" + average[0] + ";" + average[1]);
 		return average;
 	}
 
@@ -311,9 +258,8 @@ public class StreamTest {
 		}
 		average[0] /= nn;
 		average[1] /= nn;
-		System.out.println("Average time for Stream4 with kstream=" + k + " Nelements="
-				+ N + " buffer=" + b + " times=" + nn + "(in SystemTime & UserTime);" 
-				+ average[0] + ";" + average[1] );
+		System.out.println("Average time for Stream4 with kstream=" + k + " Nelements=" + N + " buffer=" + b + " times="
+				+ nn + "(in SystemTime & UserTime);" + average[0] + ";" + average[1]);
 		return average;
 	}
 
@@ -332,7 +278,7 @@ public class StreamTest {
 		long[] start = new long[2];
 		start[0] = CPUUtils.getSystemTime();
 		start[1] = CPUUtils.getUserTime();
-		
+
 		for (int i = 1; i <= k; i++) {
 			String inputFile = pathInput + i + ".data";
 			String outputFile = pathOutput + i + ".data";
@@ -349,7 +295,7 @@ public class StreamTest {
 		}
 		elapsedSystemTimeUserTime[1] = CPUUtils.getUserTime() - start[1];
 		elapsedSystemTimeUserTime[0] = CPUUtils.getSystemTime() - start[0];
-		
+
 		return elapsedSystemTimeUserTime;
 	}
 
@@ -358,7 +304,7 @@ public class StreamTest {
 		long[] start = new long[2];
 		start[0] = CPUUtils.getSystemTime();
 		start[1] = CPUUtils.getUserTime();
-		
+
 		for (int i = 1; i <= k; i++) {
 			String inputFile = pathInput + i + ".data";
 			String outputFile = pathOutput + i + ".data";
@@ -373,10 +319,10 @@ public class StreamTest {
 			ioStream2Read.close();
 			ioStream2Write.close();
 		}
-		
+
 		elapsedSystemTimeUserTime[1] = CPUUtils.getUserTime() - start[1];
 		elapsedSystemTimeUserTime[0] = CPUUtils.getSystemTime() - start[0];
-		
+
 		return elapsedSystemTimeUserTime;
 	}
 
@@ -385,7 +331,7 @@ public class StreamTest {
 		long[] start = new long[2];
 		start[0] = CPUUtils.getSystemTime();
 		start[1] = CPUUtils.getUserTime();
-		
+
 		for (int i = 1; i <= k; i++) {
 			String inputFile = pathInput + i + ".data";
 			String outputFile = pathOutput + i + ".data";
@@ -400,10 +346,10 @@ public class StreamTest {
 			ioStream3Read.close();
 			ioStream3Write.close();
 		}
-		
+
 		elapsedSystemTimeUserTime[1] = CPUUtils.getUserTime() - start[1];
 		elapsedSystemTimeUserTime[0] = CPUUtils.getSystemTime() - start[0];
-		
+
 		return elapsedSystemTimeUserTime;
 	}
 
@@ -412,7 +358,7 @@ public class StreamTest {
 		long[] start = new long[2];
 		start[0] = CPUUtils.getSystemTime();
 		start[1] = CPUUtils.getUserTime();
-		
+
 		for (int i = 1; i <= k; i++) {
 			String inputFile = pathInput + i + ".data";
 			String outputFile = pathOutput + i + ".data";
@@ -427,10 +373,10 @@ public class StreamTest {
 			ioStream4Read.close();
 			ioStream4Write.close();
 		}
-		
+
 		elapsedSystemTimeUserTime[1] = CPUUtils.getUserTime() - start[1];
 		elapsedSystemTimeUserTime[0] = CPUUtils.getSystemTime() - start[0];
-		
+
 		return elapsedSystemTimeUserTime;
 	}
 }
