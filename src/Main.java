@@ -35,13 +35,14 @@ public class Main {
 		int Narray[] = { 15625, 31250, 62500, 125000, 250000, 500000, 1000000, 2000000, 4000000, 8000000, 16000000,
 				32000000 };
 
-		// if(isGenerateFile) {
-		// for (int nTest : Narray) {
-		// FileGenerator generator = new FileGenerator(nTest, inputFilePath,
-		// "input" + nTest + ".data");
-		// generator.generateFile();
-		// }
-		// }
+		// generate the files for testing for the first time the experiment is done
+		// to generate, set the isGenerate variable above into true
+		if (isGenerateFile) {
+			for (int nTest : Narray) {
+				FileGenerator generator = new FileGenerator(nTest, inputFilePath, "input" + nTest + ".data");
+				generator.generateFile();
+			}
+		}
 
 		// 3.2.1.1 for small input
 		// B = 8,388,608; M = 250,000; d = 2
@@ -298,6 +299,6 @@ public class Main {
 			System.out.println(str);
 			listResult.add(str);
 		}
-		
+
 	}
 }

@@ -82,6 +82,7 @@ public class IOStream2_Input extends AbstractInputStream {
 		ioStream2Write.create();
 		for (int j = 0; j < N; j++) {
 			int temp = ioStream2Read.read_next();
+			System.out.println(temp);
 			ioStream2Write.write(temp);
 		}
 		ioStream2Read.close();
